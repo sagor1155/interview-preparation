@@ -1,57 +1,20 @@
 # Job Interview Preparation
 
-- [ ] Problem Solving: NeetCode-150
+- [ ] Problem Solving - [NeetCode](https://neetcode.io/practice)
 - [ ] OOP
 - [ ] Design Pattern
 - [ ] Database: SQL, NoSQL
-- [ ] Java Fundamentals
-- [ ] Java Feature Changes
-- [ ] Spring Boot
-    - [ ] AOP
-    - [ ] Hibernate, ORM
-    - [ ] Spring Security
-    - [ ] Authentication & Authorization in Microservices 
-    - [ ] Spring Cloud
-    - [ ] ActiveMQ
-    - [ ] Kafka
-    - [ ] Unit Testing
+- [ ] [Java](./docs/java/java.md) 
+- [ ] [Spring Boot](./docs/spring-boot/spring-boot.md)
+- [ ] [Microservice](https://www.udemy.com/course/microservices-with-spring-boot-and-spring-cloud/)
 - [ ] DevOps
     - [ ] CI/CD Pipeline
     - [ ] Docker, Docker compose
     - [ ] Kubernetes
 - [ ] AWS 
-    - [ ] IAM
-    - [ ] EC2
-    - [ ] Lambda
-    - [ ] DynamoDB
-    - [ ] API Gateway
-    - [ ] Amplify
-    - [ ] 
-- [ ] 
-- [ ] Angular
-    - [ ] Bootstrap sequence
-    - [ ] Input/Output binding
-    - [ ] Lifecycle hooks
-    - [ ] Directive & Pipes
-    - [ ] Testing
-    - [ ] Lazy loading in context of Angular
-    - [ ] Difference between `constructor` and `ngOnInit`
-    - [ ] Dependency Injection
-    - [ ] Ivy vs View Renderer Engine
-    - [ ] What are @ViewChild and @ViewContent
-    - [ ] Difference between interface and type
-    - [ ] Why don’t we use constructor for assignment?
-    - [ ] proxy pattern, factory
-    - [ ] What is signals? Why do we use it?
-    - [ ] What do you understand by preprocessor?
-    - [ ] Performance optimization in Angular.
-    - [ ] What are AOT and JIT? Which one is better and why?
-    - [ ] Why would you use reactive extensions? Talk about some operators
-    - [ ] Angular Ivy, Angular Elements, Standalone Components, JS Expressions, Angular Expressions, Server Side Rendering
-    - [ ] Differences and how to unit test, integration test, end to end test 
+- [ ] [Angular](./docs/angular/angular.md)
 - [ ] Javascript, Typescript
 - [ ] Behavioral
 - [ ] Resources:
     - [ ] https://www.educative.io/courses/grokking-coding-interview-patterns-java
-    - [ ] 
-- [ ] 
+
