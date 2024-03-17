@@ -7,10 +7,11 @@
 - [ ] Exceptions
 - [ ] Comparator vs Comparable
 - [ ] Stream API
+- [ ] Unit Testing
 
 ## Collection API
 
-### Ref:
+### Refs
 - 
 
 ## Threading 
@@ -22,7 +23,7 @@
 - Useful methods
 - 
 
-### Ref: 
+### Refs
 - https://tipsontech.medium.com/multi-threading-in-java-b33620ce7b0a
 - Telusko videos: (85-90)
   - https://www.youtube.com/watch?v=KuvkahVyY9E
@@ -128,6 +129,69 @@ The decision to use Comparable or Comparator depends on the requirements and des
 - Use Comparator when you want to define multiple sorting rules.
 - Use Comparator to provide the sorting logic if Class doesn't implement Comparable
 
-### Ref:
+### Refs
 - https://medium.com/@himani.prasad016/comparable-vs-comparator-7aefb0a697c7
 - https://www.youtube.com/watch?v=ZA2oNhtNk3w
+
+
+## Exceptions
+### Error 
+Errors in a program are non-recoverable. Program gets terminated in case of error occurence.
+Error can happen because of lack of system resources such as heap memory is not available etc. 
+During the runtime of a program if any error occurs we will not be able to handle it.
+Examples: `OutOfMemoryError`, `StackOverflowError`, 
+
+### Exception
+Exceptions are recoverable by handling them properly. 
+Example: trying to access a property from a null object - `NullPointerException`,
+dividing an interger by zero - `ArithmaticException` etc. 
+
+### Exception Hierarchy
+<img src="../images/java-exception.webp"
+     alt="Java Exception Hierarchy"
+     style="float: left; margin-right: 10px; margin-bottom: 20px;" />
+
+### Exception Types
+- Checked
+- Unchecked
+
+#### Checked Exception
+- All exceptions other than `RuntimeException` and `Error` are known as `Checked` exception
+- These exceptions are checked by the compiler at compile time itself
+- E.g. For file read operation compiler forces us to handle `FileNotFoundException` because it's possible that the file is not present
+- Some other checked exceptions are `SQLException`, `IOException` etc. 
+
+#### Unchecked Exception
+- Runtime Exceptions are known as `Unchecked` exceptions. 
+- Compiler doesn't force us to handle these exception but as a programmer it is our responsibility to handle runtime exceptions
+- E.g. `NullPointerException`, `ArithmeticException`, `ArrayIndexOutOfBoundException` etc.
+
+
+### Class Cascade Exception
+
+
+### Finally vs Return
+- Finally block gets executed even though return statement is available inside try block. 
+- Finally block gets more priority than the return statement. 
+- In case all try, catch, finally block return some value, then finally block return takes priority.
+
+### Finally Vs System.exit(0)
+- JVM gets exited when `System.exit(0)` code executes. 
+- If we use `System.exit(0)` inside try block, then finally block will not execute. 
+
+### throw vs throws
+**`throw`**
+- used to explicitly throw an exception
+- throw keyword is followed by an instance of an exception
+- you can throw one exception at a time
+- using throw keyword only unchecked exceptions are propagated
+
+**`throws`**
+- used with the method signature to declare an exception which might get thrown by the method while executing the code 
+- throws is followed by exception class names
+- you can declare multiple exceptions using throws keyword
+- using throws keyword both checked and unchecked exceptions can be propagated
+
+### Refs
+- https://interviewnoodle.com/exception-in-java-89a0b41e0c45
+- 
