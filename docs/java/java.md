@@ -35,6 +35,91 @@
 
 ## Comparator vs Comparable
 
+### Comparable
+```java
+public interface Comparable<T> {
+    public int compareTo(T o);
+}
+```
+
+```java
+class Person implements Comparable<Person> {
+    private String name;
+    private Integer age;
+
+    @Override
+    public int compareTo(Person that) {
+        return this.age - that.getAge();
+    }
+}
+```
+
+```java
+private static void testComparable() {
+    List<Person> personList = new ArrayList<>();
+    personList.add(new Person("John", 32));
+    personList.add(new Person("Natasha", 29));
+    personList.add(new Person("DSarker", 31));
+
+    Collections.sort(personList);
+    System.out.println(personList);
+}
+```
+
+Result
+```
+[Person{name='Natasha', age=29}, Person{name='DSarker', age=31}, Person{name='John', age=32}]
+```
+
+### Comparator
+```java
+@FunctionalInterface
+public interface Comparator<T> {
+    ...
+    int compare(T o1, T o2);
+    ...
+}
+```
+
+```java
+class PersonAgeComparator implements Comparator<Person> {
+    @Override
+    public int compare(Person p1, Person p2) {
+        return p1.getAge() - p2.getAge();
+    }
+}
+
+```
+
+```java
+private static void testComparator() {
+    Comparator<Person> personNameLengthComparator = (p1, p2) -> {
+        return p1.getName().length() - p2.getName().length();
+    };
+
+    List<Person> personList = new ArrayList<>();
+    personList.add(new Person("John", 32));
+    personList.add(new Person("Natasha", 29));
+    personList.add(new Person("DSarker", 31));
+
+    Collections.sort(personList, new PersonAgeComparator());
+    System.out.println(personList);
+
+    Collections.sort(personList, personNameLengthComparator);
+    System.out.println(personList);
+
+    Collections.sort(personList, (p1, p2) -> p1.getName().compareTo(p2.getName()));
+    System.out.println(personList);
+}
+```
+
+Result
+```
+[Person{name='Natasha', age=29}, Person{name='DSarker', age=31}, Person{name='John', age=32}]
+[Person{name='John', age=32}, Person{name='Natasha', age=29}, Person{name='DSarker', age=31}]
+[Person{name='DSarker', age=31}, Person{name='John', age=32}, Person{name='Natasha', age=29}]
+```
+
 ### When to use Comparable and Comparator
 The decision to use Comparable or Comparator depends on the requirements and design of your application. Here are some guidelines:
 
