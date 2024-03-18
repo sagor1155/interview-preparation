@@ -1,5 +1,4 @@
 # Java Fundamentals
-- [ ] Java Feature Changes
 - [ ] Memory management
 - [ ] Reactive
 - [ ] Collection API
@@ -8,6 +7,8 @@
 - [ ] Comparator vs Comparable
 - [ ] Stream API
 - [ ] Unit Testing
+- [ ] Java Feature Changes
+
 
 ## Collection API
 
@@ -191,6 +192,7 @@ dividing an interger by zero - `ArithmaticException` etc.
 - throws is followed by exception class names
 - you can declare multiple exceptions using throws keyword
 - using throws keyword both checked and unchecked exceptions can be propagated
+- used for ducking exception
 
 ### Refs
 - https://interviewnoodle.com/exception-in-java-89a0b41e0c45
