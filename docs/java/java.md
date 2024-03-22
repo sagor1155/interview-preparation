@@ -5,6 +5,7 @@
 - [ ] Threading
 - [ ] Exceptions
 - [ ] Comparator vs Comparable
+- [ ] Optional
 - [ ] Stream API
 - [ ] Unit Testing
 - [ ] Java Feature Changes
