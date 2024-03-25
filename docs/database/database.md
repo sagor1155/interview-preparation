@@ -12,7 +12,7 @@
 - Merges two tables in order to reduce the number of joins to speed up query performance
 - 
 
-## 1NF
+## First Normal Form (1NF)
 - Every table must have primary key
 - Every column must have atomic value
 - Table must not have repeating groups
@@ -20,14 +20,27 @@
 <img src="../images/1nf.png" alt="Markdown Monster icon"
 style="float: left; margin-right: 10px; margin-bottom: 20px;"/>
 
-## 2NF
+## Second Normal Form (2NF)
+- The data must be in First Normal Form (1NF)
+- Remove partial dependency from the table
+- All the non-key columns must be fully dependent on primary key, it should not be partially dependent
 
-## 3NF
+**Dependency ~ Functional Dependency:** All columns are dependent on only `one` primary key. 
 
-## 1NF
+**Partial Dependency:** Partial Dependency happens when there's two or more primary exists in one table (Candidate Key) 
+
+<img src="../images/2nf.png" alt="Markdown Monster icon"
+style="float: left; margin-right: 10px; margin-bottom: 20px;"/>
+
+
+## Third Normal Form (3NF)
+- The data must be in First Normal Form (1NF) and Second Normal Form (2NF)
+- Remove Transient/Transitive dependency from the table
 
 
 ## Refs:
+- https://www.youtube.com/watch?v=9hfjC-BpY20
+- https://www.youtube.com/watch?v=9L10Q1nAfyg
 - https://blog.det.life/understanding-database-normalization-from-basics-to-er-diagrams-488a53923cf4
 - https://medium.com/@13032765d/database-normalization-the-key-to-efficient-data-storage-6c0f38d30765
 - 
