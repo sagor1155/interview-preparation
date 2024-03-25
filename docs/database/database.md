@@ -8,16 +8,15 @@
 - Minimizes duplicate data, Prevents data inconsistencies, Simplifies queries, Enables flexible interface design, Improves scalability
 
 ## Denormalization
-- Denormalization technique Focuses on improving the search performance 
-- Merges two tables in order to reduce the number of joins to speed up query performance
-- 
+- Denormalization technique Focuses on improving the search performance.
+- Merges two tables in order to reduce the number of joins to speed up query performance.
 
 ## First Normal Form (1NF)
 - Every table must have primary key
 - Every column must have atomic value
 - Table must not have repeating groups
 
-<img src="../images/1nf.png" alt="Markdown Monster icon"
+<img src="../images/1nf.png" alt="1NF"
 style="float: left; margin-right: 10px; margin-bottom: 20px;"/>
 
 ## Second Normal Form (2NF)
@@ -29,13 +28,21 @@ style="float: left; margin-right: 10px; margin-bottom: 20px;"/>
 
 **Partial Dependency:** Partial Dependency happens when there's two or more primary exists in one table (Candidate Key) 
 
-<img src="../images/2nf.png" alt="Markdown Monster icon"
+<img src="../images/2nf.png" alt="2NF"
 style="float: left; margin-right: 10px; margin-bottom: 20px;"/>
 
 
 ## Third Normal Form (3NF)
 - The data must be in First Normal Form (1NF) and Second Normal Form (2NF)
 - Remove Transient/Transitive dependency from the table
+
+**Transitive Dependency:** Happens when one column depends on another column which is not primary key.
+Transitive dependency occurs when a non-key attribute depends on another non-key attribute. 
+
+3NF ensures that each non-key attribute is directly dependent on the primary key.
+
+<img src="../images/3nf.png" alt="3NF"
+style="float: left; margin-right: 10px; margin-bottom: 20px;"/>
 
 
 ## Refs:
