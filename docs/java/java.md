@@ -180,6 +180,7 @@ dividing an interger by zero - `ArithmaticException` etc.
 ### Finally Vs System.exit(0)
 - JVM gets exited when `System.exit(0)` code executes. 
 - If we use `System.exit(0)` inside try block, then finally block will not execute. 
+- Finally block will not execute if JVM crashes
 
 ### throw vs throws
 **`throw`**
