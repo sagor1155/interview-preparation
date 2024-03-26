@@ -4,6 +4,7 @@
 - [ ] [Trigger](#Trigger)
 - [ ] [Transactions](#Transactions)
 - [ ] [Indexing](#Indexing)
+- [ ] [View](#View)
 - [ ] [Joins](#)
 - [ ] [Alias](#) 
 - [ ] [Subquery](#)
@@ -208,14 +209,84 @@ SELECT * FROM table_name USE INDEX (index_name) WHERE column_name = value;
 ### Example
 Let's create an index on the `email` column of a table named `users`:
 ```sql
--- create table
+-- Create table
 CREATE TABLE users (
     id INT PRIMARY KEY,
     username VARCHAR(50),
     email VARCHAR(100)
 );
--- create index
+
+-- Create index
 CREATE INDEX idx_email ON users (email);
 ```
 In this example, we've created a single-column index named `idx_email` on the email column of the users table. 
 This index will improve the performance of queries that filter or search based on the email addresses of users.
+
+## View
+View is a `virtual table` that is based on the result set of a `SELECT` query. 
+Views encapsulates complex SQL queries into a reusable and easily manageable object. 
+They provide a way to present data in a structured format without physically storing the data.
+
+Here's how you can create a view in MySQL:
+
+```sql
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name WHERE condition;
+```
+
+Let's create a simple example to illustrate the concept.
+
+```sql
+CREATE TABLE customers (
+    customer_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    email VARCHAR(100)
+);
+
+CREATE TABLE orders (
+    order_id INT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+);
+
+INSERT INTO customers (customer_id, first_name, last_name, email) VALUES
+(1, 'John', 'Doe', 'john.doe@example.com'),
+(2, 'Jane', 'Smith', 'jane.smith@example.com'),
+(3, 'Michael', 'Johnson', 'michael.johnson@example.com');
+
+INSERT INTO orders (order_id, customer_id, order_date) VALUES
+(101, 1, '2024-03-25'),
+(102, 2, '2024-03-26'),
+(103, 3, '2024-03-27');
+
+```
+
+Now, let's create a view named `order_customer_info` that joins the `orders` and `customers` tables:
+
+```sql
+CREATE VIEW order_customer_info AS
+SELECT o.order_id, o.order_date, o.customer_id, c.first_name, c.last_name, c.email
+FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id;
+```
+
+Now, when you query the `order_customer_info` view, it will return the combined information from both tables:
+```sql
+SELECT * FROM order_customer_info;
+```
+
+```sql
++----------+------------+-------------+------------+-----------+-----------------------------+
+| order_id | order_date | customer_id | first_name | last_name | email                       |
++----------+------------+-------------+------------+-----------+-----------------------------+
+|      101 | 2024-03-25 |           1 | John       | Doe       | john.doe@example.com        |
+|      102 | 2024-03-26 |           2 | Jane       | Smith     | jane.smith@example.com      |
+|      103 | 2024-03-27 |           3 | Michael    | Johnson   | michael.johnson@example.com |
++----------+------------+-------------+------------+-----------+-----------------------------+
+```
+
+One of the advantages of views is that they can simplify complex queries. For instance, if you have a complex query that you need to run frequently, 
+you can create a view for it and then query the view instead of rewriting the complex query each time. 
