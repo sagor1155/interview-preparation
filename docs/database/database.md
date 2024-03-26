@@ -1,4 +1,13 @@
 # Database
+- [ ] [Normalization](#Normalization)
+- [ ] [Key](#Key)
+- [ ] [Trigger](#Trigger)
+- [ ] [Transactions](#Transactions)
+- [ ] [Indexing](#Indexing)
+- [ ] [Joins](#)
+- [ ] [Alias](#) 
+- [ ] [Subquery](#)
+
 
 ## Normalization
 - Database normalization is about organizing data in a database efficiently
@@ -52,7 +61,7 @@ style="float: left; margin-right: 10px; margin-bottom: 20px;"/>
 - https://medium.com/@13032765d/database-normalization-the-key-to-efficient-data-storage-6c0f38d30765
 
 
-## Primary Key, Foreign Key, Unique Key, Candidate Key
+## Key
 ### Primary Key
 - A column or a set of columns in a table that uniquely identifies each row.
 - Must contain unique values
@@ -82,7 +91,8 @@ style="float: left; margin-right: 10px; margin-bottom: 20px;"/>
 - Candidate key does not necessarily have to be designated as the primary key of the table.
 - **Example:** A combination of author name and book title could uniquely identify a book (but there might be multiple books by the same author).
 
-## What is a Trigger? How to create trigger in MySQL?
+## Trigger
+### What is a trigger? How to create trigger in MySQL?
 A trigger in a database is a set of actions that are automatically performed (or triggered) 
 when a specified event occurs on a table.
 
@@ -115,3 +125,97 @@ END;
 - Creating triggers requires proper privileges on the database and the table involved.
 - Using triggers excessively can impact database performance, so they should be designed thoughtfully.
 - **Use case:** enforce data integrity, auditing, logging, data transformation/cleaning/validation, enforcing security etc. 
+
+## Transactions
+### Explain transactions and how to implement it in MySQL?
+Transactions in databases are a fundamental concept that ensures data integrity and consistency 
+by grouping one or more database operations into a single logical unit of work.
+A transaction must satisfy the ACID properties. 
+
+Here's an example illustrating the use of transactions in MySQL:
+
+```sql
+START TRANSACTION;
+
+UPDATE accounts SET balance = balance - 100 WHERE account_id = 123;
+UPDATE accounts SET balance = balance + 100 WHERE account_id = 456;
+
+COMMIT;
+```
+
+In this example, two UPDATE statements are executed within a transaction block to transfer 100 units from account 123 to account 456. 
+If both UPDATE statements succeed, the changes are committed to the database. 
+If any part of the transaction fails, such as due to a constraint violation or an error, 
+the changes are rolled back, and the database remains in its original state.
+
+### ACID
+`Atomicity:` The entire transaction is treated as a single unit. Either all statements succeed or none do.
+
+`Consistency:` The transaction moves the database from one valid state to another, maintaining data integrity.
+
+`Isolation:` Transactions should execute independently of other transactions. Transactions are isolated from each other, 
+ensuring changes made by one transaction don't affect unfinished transactions.
+
+`Durability:` Once a transaction is committed, the changes are permanent and survive system failures.
+
+## Indexing
+- Indexing is a technique used to optimize database query performance
+- Creates data structures that allow for fast retrieval of rows based on the values of specific columns. 
+- An index is essentially a pointer to the location of rows in a table, organized in a way that makes it efficient to locate the desired rows when querying the database.
+
+### How Indexing Works
+1. **_Data Structure:_** When you create an index on a column or a set of columns, MySQL creates a data structure (typically a `B-tree` or a `Hash table`) that maps the indexed column values to the corresponding rows in the table.
+2. **_Fast Lookup:_** When you query the database using a condition on the indexed column(s), MySQL can quickly locate the rows that match the condition by traversing the index data structure rather than scanning the entire table.
+3. **_Improved Performance:_** Indexing can significantly improve query performance, especially for tables with large numbers of rows or complex query conditions.
+
+### Implementing Indexing in MySQL
+You can create an index on one or more columns using the `CREATE INDEX` statement 
+or by including the `INDEX` or `UNIQUE` keyword in the `CREATE TABLE` statement.
+
+```sql
+-- Syntax for creating an index after table creation
+CREATE INDEX index_name ON table_name (column_name);
+
+-- Syntax for creating an index during table creation
+CREATE TABLE table_name (
+    column1 datatype,
+    column2 datatype,
+    INDEX index_name (column_name)
+);
+```
+
+### Using Indexes in Queries
+MySQL automatically uses indexes to optimize query execution when appropriate. 
+You can also explicitly specify the use of an index using the `USE INDEX` or `FORCE INDEX` hints.
+
+```sql
+-- Example of using an index hint
+SELECT * FROM table_name USE INDEX (index_name) WHERE column_name = value;
+```
+
+### Types of Indexes
+1. **Single-Column Index:** Index created on a single column.
+2. **Composite Index:** Index created on multiple columns.
+3. **Unique Index:** Ensures that all values in the indexed column(s) are unique.
+4. **Primary Key Index:** A special type of unique index that uniquely identifies each row in the table.
+5. **Full-Text Index:** Used for full-text searches on text columns.
+
+### Monitoring and Maintaining Indexes
+- Regularly monitor query performance using tools like `EXPLAIN` to ensure that indexes are being utilized effectively.
+- Avoid unnecessary indexes, as they can degrade write performance and increase storage requirements.
+- Periodically analyze and optimize indexes based on query patterns and performance metrics.
+
+### Example
+Let's create an index on the `email` column of a table named `users`:
+```sql
+-- create table
+CREATE TABLE users (
+    id INT PRIMARY KEY,
+    username VARCHAR(50),
+    email VARCHAR(100)
+);
+-- create index
+CREATE INDEX idx_email ON users (email);
+```
+In this example, we've created a single-column index named `idx_email` on the email column of the users table. 
+This index will improve the performance of queries that filter or search based on the email addresses of users.
