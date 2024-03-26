@@ -82,4 +82,36 @@ style="float: left; margin-right: 10px; margin-bottom: 20px;"/>
 - Candidate key does not necessarily have to be designated as the primary key of the table.
 - **Example:** A combination of author name and book title could uniquely identify a book (but there might be multiple books by the same author).
 
+## What is a Trigger? How to create trigger in MySQL?
+A trigger in a database is a set of actions that are automatically performed (or triggered) 
+when a specified event occurs on a table.
 
+**Create trigger in MySQL:**
+
+Here's a basic syntax for creating a trigger - 
+```sql
+CREATE TRIGGER trigger_name
+{BEFORE | AFTER} {INSERT | UPDATE | DELETE} ON table_name
+FOR EACH ROW
+BEGIN
+    -- SQL statements to be executed when the trigger condition is met
+END;
+```
+
+Let's say we have a table called `employees`, and we want to create a `trigger` that automatically updates 
+the `last_update` column whenever a row in the `employees` table is updated:
+
+```sql
+CREATE TRIGGER update_last_update
+AFTER UPDATE ON employees
+FOR EACH ROW
+BEGIN
+    UPDATE employees
+    SET last_update = NOW()
+    WHERE id = NEW.id;
+END;
+```
+
+- Creating triggers requires proper privileges on the database and the table involved.
+- Using triggers excessively can impact database performance, so they should be designed thoughtfully.
+- **Use case:** enforce data integrity, auditing, logging, data transformation/cleaning/validation, enforcing security etc. 
