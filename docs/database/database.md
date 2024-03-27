@@ -5,9 +5,10 @@
 - [ ] [Transactions](#Transactions)
 - [ ] [Indexing](#Indexing)
 - [ ] [View](#View)
-- [ ] [Joins](#)
+- [ ] [Joins](#Joins)
 - [ ] [Alias](#) 
 - [ ] [Subquery](#)
+- [ ] [SQL Cheat Sheet](sql-cheatsheet.pdf)
 
 
 ## Normalization
@@ -290,3 +291,20 @@ SELECT * FROM order_customer_info;
 
 One of the advantages of views is that they can simplify complex queries. For instance, if you have a complex query that you need to run frequently, 
 you can create a view for it and then query the view instead of rewriting the complex query each time. 
+
+## Joins
+- INNER JOIN: Returns records that have matching values in both tables
+- LEFT JOIN: Returns all records from the left table, and the matched records from the right table
+- RIGHT JOIN: Returns all records from the right table, and the matched records from the left table
+- CROSS JOIN: Returns all records from both tables
+
+OUTER JOIN:
+MySQL don't support FULL OUTER JOIN. 
+
+```sql
+SELECT users.name, likes.like FROM users LEFT OUTER JOIN likes ON users.id = likes.user_id
+UNION
+SELECT users.name, likes.like FROM users RIGHT OUTER JOIN likes ON users.id = likes.user_id
+```
+
+https://joins.spathon.com/
