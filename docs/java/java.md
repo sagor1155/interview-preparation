@@ -1,5 +1,7 @@
 # Java Fundamentals
+- [ ] [JVM Internals](#jvm-internals)
 - [ ] Memory management
+- [ ] Garbage Collector
 - [ ] Reactive
 - [ ] Collection API
 - [ ] Threading
@@ -7,9 +9,33 @@
 - [ ] Comparator vs Comparable
 - [ ] Optional
 - [ ] Stream API
+- [ ] Reflection
 - [ ] Unit Testing
 - [ ] Java Feature Changes
 
+
+## JVM Internals
+
+### Execution process of a Java program
+
+<img src="../images/jvm-bytecode.png" alt="JVM Bytecode"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
+
+<img src="../images/jvm-internals.png" alt="JVM Internals"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
+
+### AOT vs JIT Compilation
+
+### JIT (Just In Time) Compilation
+<img src="../images/jvm-jit.png" alt="JVM JIT Compiler"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
+
+### AOT (Ahead of Time) Compilation
+
+
+### Refs
+- https://www.youtube.com/watch?v=GXUiEouK7DM&list=PLAQe3Pnt5c2Iez2AK2P05yuoiUiuvyDPT
+- https://www.youtube.com/watch?v=sJVenujWGjs
 
 ## Collection API
 

@@ -1,5 +1,6 @@
 package org.example.sorting;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
