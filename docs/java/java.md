@@ -2,7 +2,6 @@
 - [ ] [JVM Internals](#jvm-internals)
 - [ ] Memory management
 - [ ] Garbage Collector
-- [ ] Reactive
 - [ ] Collection API
 - [ ] Threading
 - [ ] Exceptions
@@ -11,6 +10,7 @@
 - [ ] Stream API
 - [ ] Reflection
 - [ ] Unit Testing
+- [ ] Flow, Mono, Future, Reactive, Webflux
 - [ ] Java Feature Changes
 
 
@@ -24,18 +24,50 @@ style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
 <img src="../images/jvm-internals.png" alt="JVM Internals"
 style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
 
-### AOT vs JIT Compilation
-
 ### JIT (Just In Time) Compilation
 <img src="../images/jvm-jit.png" alt="JVM JIT Compiler"
 style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
 
 ### AOT (Ahead of Time) Compilation
+Ahead of Time (AOT) compiler is introduced in Java 9. Using AOT we can convert some of our java code/library into compiled code (machine instruction) even before we run the application. 
+
+Compile classes beforehand while generating bytecode - 
+```
+jaotc --output libHelloWorld.so HelloWorld.class
+```
+Add this compiled code while starting the application - 
+```
+java -XX:AOTLibrary=./libHelloWorld.so HelloWorld
+```
+
+Unlike the bytecode, the compiled code is not portable and it's different for different architecture. So, the compiled code is not cross platform. As of Java 9, it only supports x86 architecture. 
+
+
+<img src="../images/jvm-aot.png" alt="JVM AOT Compiler"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
 
 
 ### Refs
 - https://www.youtube.com/watch?v=GXUiEouK7DM&list=PLAQe3Pnt5c2Iez2AK2P05yuoiUiuvyDPT
 - https://www.youtube.com/watch?v=sJVenujWGjs
+
+
+## Memory management
+<img src="../images/java-mem.png" alt="Java Memory Management"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
+
+<img src="../images/java-stack-heap.png" alt="Java Stack Heap"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
+
+### Refs:
+- https://www.youtube.com/watch?v=dH2LG3wxXbQ
+
+## Garbage Collector
+<img src="../images/java-gc.png" alt="Java Garbage Collector"
+style="float: center; margin-right: 10px; margin-bottom: 15px; width: 640px;" />
+
+### Refs:
+- https://www.youtube.com/watch?v=XXOaCV5xm9s
 
 ## Collection API
 
