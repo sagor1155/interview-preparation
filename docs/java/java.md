@@ -1,11 +1,11 @@
 # Java Fundamentals
 - [ ] [JVM Internals](#jvm-internals)
-- [ ] Memory management
-- [ ] Garbage Collector
-- [ ] Collection API
-- [ ] Threading
-- [ ] Exceptions
-- [ ] Comparator vs Comparable
+- [ ] [Memory Management](#memory-management)
+- [ ] [Garbage Collector](#garbage-collector)
+- [ ] [Collection API](#collection-api)
+- [ ] [Threading](#threading-)
+- [ ] [Exceptions](#exception)
+- [ ] [Comparator vs Comparable](#comparator-vs-comparable)
 - [ ] Optional
 - [ ] Stream API
 - [ ] Reflection
@@ -69,10 +69,16 @@ style="float: center; margin-right: 10px; margin-bottom: 15px; width: 640px;" />
 ### Refs:
 - https://www.youtube.com/watch?v=XXOaCV5xm9s
 
+
 ## Collection API
 
+<img src="../images/java-collection-framework.webp" alt="Java Collection Framework"
+style="float: center; margin-right: 10px; margin-bottom: 15px; width: 640px;" />
+
 ### Refs
-- 
+- https://medium.com/edureka/java-collections-6d50b013aef8
+- https://chazool.medium.com/java-collection-framework-1a26b56a310a
+
 
 ## Threading 
 - Threading Basics
