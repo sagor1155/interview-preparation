@@ -2,7 +2,7 @@
 
 - [ ] Problem Solving - [NeetCode](https://neetcode.io/practice)
 - [ ] OOP
-- [ ] Design Pattern
+- [ ] [Design Pattern](./docs/design-pattern/design-pattern.md)
 - [ ] [Java](./docs/java/java.md) 
 - [ ] [Spring Boot](./docs/spring-boot/spring-boot.md)
 - [ ] [Microservice](https://www.udemy.com/course/microservices-with-spring-boot-and-spring-cloud/)
@@ -10,12 +10,14 @@
 - [ ] DevOps
     - [ ] CI/CD Pipeline
     - [ ] Docker, Docker compose
-    - [ ] Kubernetes
+    - [ ] [Kubernetes](./docs/kubernetes/kubernetes.md)
 - [ ] AWS 
 - [ ] [Angular](./docs/angular/angular.md)
 - [ ] Javascript
 - [ ] Typescript
+- [ ] System Design
 - [ ] Behavioral
+- [ ] [Miscellaneous Topics/Questions](./docs/miscellaneous/miscellaneous.md)
 - [ ] Resources:
     - [ ] https://www.educative.io/courses/grokking-coding-interview-patterns-java
 

@@ -86,8 +86,8 @@ style="float: center; margin-right: 10px; margin-bottom: 15px; width: 640px;" />
 - Race Condition and Synchronization
 - Thread Lifecycle/States
 - Types of Threads (User, Daemon)
+- Thread pool executor
 - Useful methods
-- 
 
 ### Refs
 - https://tipsontech.medium.com/multi-threading-in-java-b33620ce7b0a
