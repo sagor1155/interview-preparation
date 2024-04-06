@@ -11,7 +11,7 @@
 - [ ] Tree-Shaking
 - [ ] What are AOT and JIT? Which one is better and why?
 - [ ] Ivy vs View Renderer Engine
-- [ ] What are @ViewChild and @ViewContent
+- [ ] What are `@ViewChild` and `@ViewContent`
 - [ ] Difference between interface and type
 - [ ] Why don’t we use constructor for assignment?
 - [ ] proxy pattern, factory
@@ -21,7 +21,7 @@
 - [ ] Why would you use reactive extensions? Talk about some operators
 - [ ] Angular Ivy, Angular Elements, Standalone Components, JS Expressions, Angular Expressions, Server Side Rendering
 - [ ] Differences and how to unit test, integration test, end to end test 
-
+- [ ] Unit Testing using `Karma` and `Jasmine`
 
 ## Lazy loading in Angular
 
