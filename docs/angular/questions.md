@@ -18,9 +18,8 @@
 - What is `AOT` compilation? What are the advantages of `AOT`?
 - Explain `"sourceMap": true` in angular.
 - Promise vs Observable
-- What are Template and Reactive forms?
-- Why Use TypeScript?
-- `Forroot` vs `childroot`
+- What are Template-driven forms and Reactive forms?
+- `forRoot` vs `forChild`
 - Handling Multiple http request using RxJs
 - `Map` vs `mergeMap` vs `switchMap` vs `concatMap` vs `exhaustMap`
 - What are class decorators?
@@ -417,7 +416,8 @@ Example:
 export class AppComponent {}
 ```
 
-### 9. Why prioritise `TypeScript` over `JavaScript` in Angular?
+### 9. Why prioritise `TypeScript` over `JavaScript` in Angular? / Why Use TypeScript?
+
 - **Static Typing:** TypeScript offers static typing, which means you define the data types of variables and function parameters. 
   This allows the compiler to catch errors early in the development process, preventing runtime issues caused by incorrect data types.
 - **Enhanced Tooling Support:** TypeScript provides rich tooling support with features such as code navigation, auto-completion, 
@@ -464,11 +464,11 @@ Example:
 
 ### 17. Promise vs Observable
 
-### 18. What are Template and Reactive forms?
+### 18. "hot" observables vs "cold" observables
 
-### 19. Why Use TypeScript?
+### 19. What are Template-driven forms and Reactive forms?
 
-### 20. `Forroot` vs `childroot`
+### 20. `forRoot` vs `forChild`
 
 ### 21. Handling Multiple http request using RxJs
 
