@@ -450,13 +450,46 @@ Example:
 <a [routerLink]="['/users', userId]">User Details</a>
 ```
 
-### 11. Angular Component Constructor Vs OnInit
+### 11. Angular Component `Constructor` Vs `OnInit`
+Constructor:
+- The constructor is a standard TypeScript feature and is part of the class initialization process.
+- It's called when an instance of the component is created.
+- It's primarily used for dependency injection and initialization of properties.
+
+ngOnInit:
+- `ngOnInit` is an Angular lifecycle hook called at `Component` mounting phase.
+- It's called after Angular has finished setting up the component's inputs and properties, but before rendering the component.
+- It's commonly used to perform initialization tasks that require data binding or accessing component inputs.
+- It's guaranteed to be called after the first `ngOnChanges`.
 
 ### 12. What happens when you use the `script` tag within a template?
+- In Angular 2 and later versions, Angular typically `sanitizes` the content within `<script>` tags in templates
+to prevent script execution and potential security risks. 
+- The script won't execute as intended.
+- They are treated as plain text and are rendered as-is.
 
 ### 13. What is `ViewChild` and you will want to use `{static: false}`?
 
 ### 14. Angular Lifecycle Hooks
+<img src="../images/angular/hooks.png" alt="JVM AOT Compiler"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
+
+#### Mounting Phase
+These hooks are triggered once:
+- `ngOnInit()` - Here we can access any @Input() property.
+- `ngAfterContentInit()` - Here we can access any content #ref
+- `ngAfterViewInit()` - Here we can access any Template/View #ref
+
+#### Change Detection Phase
+These hooks are triggered every time change detection cycle is triggered 
+and the component need to be checked (eventually re-rendered):
+- `ngDoCheck()` Starting Change Detection
+- `ngAfterContentChecked()`
+- `ngAfterViewChecked()` Change Detection is finished
+
+#### ngOnChanges Lifecycle Hook
+`ngOnChanges` triggers only when a component `Input()` property receives a new reference.
+
 
 ### 15. What is `AOT` compilation? What are the advantages of `AOT`?
 
@@ -478,7 +511,7 @@ Example:
 
 ### 24. What is the Component `Decorator` in Angular?
 
-### 25. In comparison to JIT, a compilation in AOT
+### 25. JIT vs AOT Compilation in Angular
 
 ### 26. How to prevent `cross-site scripting` (XSS)?
 
@@ -492,7 +525,7 @@ Example:
 
 ### 31. Angular 17 new features
 
-### 32. What are some of the differences between a standard Angular component and a standalone component?
+### 32. What are some of the differences between a standard Angular component and a `standalone component`?
 
 ### 33. bootstrapModule
 
