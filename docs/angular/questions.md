@@ -468,7 +468,34 @@ to prevent script execution and potential security risks.
 - The script won't execute as intended.
 - They are treated as plain text and are rendered as-is.
 
-### 13. What is `ViewChild` and you will want to use `{static: false}`?
+### 13. What is `ViewChild` and why you will want to use `{static: false}`?
+- In Angular, `ViewChild` is a decorator used to query for elements from the template of a component. 
+- It allows a component to access a child component, directive, or element that is defined within its own template. 
+
+Example:
+```typescript
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+
+@Component({
+  selector: 'app-parent',
+  template: `
+    <div #childElement></div>
+  `
+})
+export class ParentComponent implements AfterViewInit {
+  @ViewChild('childElement', { static: false }) childElementRef: ElementRef;
+
+  ngAfterViewInit() {
+    // Access the child element after the view has been initialized
+    console.log(this.childElementRef.nativeElement);
+  }
+}
+```
+
+By default, when you use `ViewChild`, Angular queries for the element during `component initialization`. 
+However, sometimes the queried element is not available during initialization, such as when it is part of a structural directive like `*ngIf` or `*ngFor`.
+In such cases, `{ static: false }` is used to `delay the query resolution` until after the view has been fully initialized. 
+This means that Angular will wait until after the view has been rendered and updated before attempting to find and assign the reference to the queried element.
 
 ### 14. Angular Lifecycle Hooks
 <img src="../images/angular/hooks.png" alt="JVM AOT Compiler"
@@ -488,16 +515,136 @@ and the component need to be checked (eventually re-rendered):
 - `ngAfterViewChecked()` Change Detection is finished
 
 #### ngOnChanges Lifecycle Hook
-`ngOnChanges` triggers only when a component `Input()` property receives a new reference.
-
+`ngOnChanges` triggers only when a component `Input()` property receives a new **_reference_**.
 
 ### 15. What is `AOT` compilation? What are the advantages of `AOT`?
+- AOT (Ahead-of-Time) compilation is a compilation process in Angular where the application's 
+templates and components are converted into highly optimized JavaScript code during 
+the build phase, before the browser downloads and runs the application. 
+- This contrasts with Just-in-Time (JIT) compilation, where the compilation of templates
+and components happens in the browser at runtime.
+
+#### Advantages of AOT
+**_Faster Rendering:_** AOT-compiled applications load more quickly because the browser doesn't have to compile the templates at runtime. This results in faster startup times and improved performance for users.
+
+_**Smaller Bundle Sizes:**_ AOT compilation eliminates the need for `Angular's compiler` in the final bundle sent to the browser, reducing the overall size of the application.
+
+_**Template Errors Detected Earlier:**_ AOT compilation detects template errors during the build process, rather than at runtime. This helps catch errors early in the development process.
+
+**_Better Security:_** Since AOT compilation generates optimized JavaScript code and eliminates the need for template parsing in the browser, it reduces the risk of template injection attacks, improving the security of Angular applications.
+
+**_Improved Tree Shaking:_** AOT compilation enables better tree shaking, a process that eliminates unused code from the final bundle. This results in smaller bundle sizes and better performance.
 
 ### 16. Explain `"sourceMap": true` in angular.
+- In Angular, `"sourceMap": true` is a configuration option that generates source maps during the build process. 
+- Source maps are files that map the `compiled JavaScript code` back to the `original TypeScript code`. 
+- They allow developers to `debug` and `inspect` the original source code in the browser's `developer tools`, even though the browser is executing the compiled JavaScript code.
+- These source maps (`.map` files) are typically generated alongside the compiled JavaScript files (`.js` files) in the output directory.
+
+To enable source maps in an Angular project, 
+you can set `"sourceMap": true` in the `tsconfig.json` file:
+```json
+{
+  "compilerOptions": {
+    "sourceMap": true
+  }
+}
+```
 
 ### 17. Promise vs Observable
+**Promise:**
+- A Promise `represents a single value` that may be available now, or in the future, or never.
+- It's a one-time operation that `resolves with a value` or `rejects with an error`.
+- Once a Promise is settled (resolved or rejected), it stays in that state and cannot change.
+- Promises are `eager`, meaning they start work as soon as they're created.
+- Promises are generally `not cancellable` once they are created.
+- Promises have built-in error handling through `.then()` for success and `.catch()` for errors.
+- Promises are natively supported in JavaScript since ES6.
 
-### 18. "hot" observables vs "cold" observables
+Example:
+```javascript
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('Data fetched successfully');
+  }, 1000);
+});
+
+promise.then(data => {
+  console.log(data); // Output: Data fetched successfully
+}).catch(error => {
+  console.error(error);
+});
+```
+
+**Observable:**
+- An Observable represents a `stream of values` that arrive over time.
+- It supports `multiple values over time`, including asynchronous updates.
+- Observables can be synchronous or asynchronous and can emit multiple values.
+- Observables are `lazy`, meaning they don't start work until a consumer subscribes to them.
+- Observables are typically `cancellable` using the unsubscribe method on the subscription object.
+- Observables offer powerful operators for transforming, combining, and manipulating streams of data.
+- Observables are part of the Reactive Extensions for JavaScript (RxJS) library and provide more features and flexibility compared to Promises.
+
+Example:
+```typescript
+import { Observable } from 'rxjs';
+
+const observable = new Observable(observer => {
+  setTimeout(() => {
+    observer.next('Data fetched successfully');
+    // observer.error('Error occurred'); // Uncomment to simulate an error
+    observer.complete();
+  }, 1000);
+});
+
+observable.subscribe({
+  next: data => console.log(data),
+  error: error => console.error(error),
+  complete: () => console.log('Observable completed')
+});
+```
+
+In summary, Promises are suitable for handling single asynchronous operations with a single result, 
+while Observables are more powerful for handling streams of data, asynchronous updates, and complex asynchronous operations with multiple values over time. 
+In Angular, Observables are commonly used for handling HTTP requests, event handling, and state management with the help of libraries like RxJS.
+
+### 18. Hot observables vs Cold observables
+"Hot" and "Cold" observables are terms used to describe different behaviors of Observables in RxJS.
+
+#### Cold Observables
+- A cold Observable starts producing values only when it is subscribed to.
+- Subscribers to a cold Observable receive the same sequence of values from the beginning.
+- Examples of cold Observables include observables created using `Observable.create`, `from`, `of`, `defer` etc.
+
+Example: 
+```typescript
+import { Observable } from 'rxjs';
+
+const coldObservable = new Observable(observer => {
+  console.log('Observable started');
+  observer.next(Math.random());
+});
+
+coldObservable.subscribe(value => console.log('Subscriber 1:', value));
+coldObservable.subscribe(value => console.log('Subscriber 2:', value));
+```
+
+#### Hot Observables
+- A hot Observable emits values regardless of whether there are any subscribers.
+- Subscribers to a hot Observable receive values emitted after they subscribe, potentially missing earlier values.
+- Hot Observables are typically used for broadcasting events or sharing a single stream of values among multiple subscribers.
+- Examples of hot Observables include observables created using `Subject`, `fromEvent`, `interval` etc.
+
+Example: 
+```typescript
+import { Subject } from 'rxjs';
+
+const hotObservable = new Subject();
+hotObservable.next(Math.random());
+hotObservable.subscribe(value => console.log('Subscriber 1:', value));
+hotObservable.next(Math.random());
+hotObservable.subscribe(value => console.log('Subscriber 2:', value));
+```
 
 ### 19. What are Template-driven forms and Reactive forms?
 
