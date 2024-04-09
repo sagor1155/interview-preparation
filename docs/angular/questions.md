@@ -648,7 +648,102 @@ hotObservable.subscribe(value => console.log('Subscriber 2:', value));
 
 ### 19. What are Template-driven forms and Reactive forms?
 
+#### Template Driven Forms
+- In template-driven forms, form logic is primarily defined in the HTML template using directives such as `ngModel`, `ngForm`, `ngSubmit`, etc.
+- Data binding is used to synchronize the model and the view. 
+- The form controls in the template are bound directly to properties in the component class.
+- Validation is often done through template directives like `required`, `minLength`, `maxLength`, etc.
+- They are generally easier to set up and understand, especially for simple forms, as they rely heavily on Angular's templating syntax.
+
+Example:
+
+```typescript
+import {Component} from "@angular/core";
+
+@Component({
+  selector: 'app-parent',
+  template: `
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(ngForm.value)">
+      <input type="text" [(ngModel)]="name" name="name" required>
+      <input type="email" [(ngModel)]="email" name="email" email required>
+      <button type="submit">Submit</button>
+    </form>
+  `
+})
+export class MyComponent {
+  name = '';
+  email = '';
+  
+  onSubmit(formValue: any) {
+    // Handle form submission logic
+  }
+}
+```
+
+#### Reactive Forms
+- Concept: Employs a `model-driven` approach where you define form controls, groups, and validation rules in the component class using TypeScript.
+- Structure:
+  - Form controls are created using FormControl class, representing individual form elements.
+  - Form groups are created using FormGroup class to group related form controls.
+  - Validation rules are defined using built-in validators or custom functions.
+  - The form model is bound to the template using form control names.
+
+Example:
+```typescript
+import { Component, FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  selector: 'app-parent',
+  template: `
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+      <input type="text" formControlName="firstName">
+      <div *ngIf="myForm.get('firstName').errors?.required">First name is required</div>
+      <input type="email" formControlName="email">
+      <div *ngIf="myForm.get('email').errors?.required">Email is required</div>
+      <div *ngIf="myForm.get('email').errors?.email">Invalid email format</div>
+      <button type="submit" [disabled]="myForm.invalid">Submit</button>
+    </form>
+  `
+})
+export class MyComponent {
+  myForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.myForm = this.fb.group({
+      firstName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
+
+  onSubmit() {
+    console.log(this.myForm.value);
+  }
+}
+```
+
+_[Note: Check Lecture-07 from WAD2 Course]_
+
+Refs: 
+- https://github.com/maharishi-university/homework-07-sagor1155
+- 
+
 ### 20. `forRoot` vs `forChild`
+
+#### forRoot:
+
+Example:
+```typescript
+
+```
+
+#### forChild:
+
+Example:
+```typescript
+
+```
 
 ### 21. Handling Multiple http request using RxJs
 

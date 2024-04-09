@@ -7,6 +7,7 @@
 - [ ] [Exceptions](#exception)
 - [ ] [Comparator vs Comparable](#comparator-vs-comparable)
 - [ ] Optional
+- [ ] _**Functional Interfaces (Consumer, Supplier, Predicate ...)**_
 - [ ] Stream API
 - [ ] Reflection
 - [ ] Unit Testing
