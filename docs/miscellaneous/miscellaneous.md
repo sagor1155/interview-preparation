@@ -12,6 +12,7 @@
 - Cassandra 
 - Oracle Database
 - ELK Stack
+- How to load multiple module/component on bootstrap in angular
 
 
 

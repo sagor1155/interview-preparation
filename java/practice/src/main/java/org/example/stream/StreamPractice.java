@@ -10,7 +10,7 @@ public class StreamPractice {
         emps.add(new Employee("D", 29, 90));
         emps.add(new Employee("C", 30, 120));
         emps.add(new Employee("A", 28, 95));
-        emps.add(new Employee("B", 29, 110));
+        emps.add(new Employee("B", 35, 120));
         emps.add(new Employee("B", 29, 105));
         emps.add(new Employee("A", 28, 85));
 
@@ -18,8 +18,19 @@ public class StreamPractice {
 //        getStatistics(emps);
 //        sliceArray(emps);
 //        mapAndJoinString(emps);
-        findDuplicateNames(emps);
-        findRepeatingNames(emps);
+//        findDuplicateNames(emps);
+//        findRepeatingNames(emps);
+        findEmployeeWithMaxSalary(emps);
+    }
+    private static void findEmployeeWithMaxSalary(List<Employee> emps) {
+        Employee emp = emps.stream()
+                .max(
+                        Comparator.comparingInt(Employee::getSalary)
+                                .thenComparing(Employee::getName, Comparator.reverseOrder())
+                )
+                .orElseThrow(() -> new RuntimeException("No employees found!"));
+
+        System.out.println("Employee with max salary: " + emp);
     }
     private static void findRepeatingNames(List<Employee> emps) {
         Map<String, Long> grouped = emps.stream()
@@ -97,6 +108,18 @@ public class StreamPractice {
             this.name = name;
             this.age = age;
             this.salary = salary;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public int getAge() {
+            return age;
+        }
+
+        public int getSalary() {
+            return salary;
         }
 
         @Override
