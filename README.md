@@ -12,6 +12,20 @@
     - [ ] Docker, Docker compose
     - [ ] [Kubernetes](./docs/kubernetes/kubernetes.md)
 - [ ] AWS 
+  - [ ] IAM
+  - [ ] EC2
+  - [ ] Lambda
+  - [ ] DynamoDB
+  - [ ] API Gateway
+  - [ ] Route53
+  - [ ] SQS
+  - [ ] SNS
+  - [ ] CDK
+  - [ ] Elastic Search
+  - [ ] Kinesis
+  - [ ] ECS
+  - [ ] EKS
+
 - [ ] [Angular](./docs/angular/angular.md)
 - [ ] Javascript
 - [ ] Typescript

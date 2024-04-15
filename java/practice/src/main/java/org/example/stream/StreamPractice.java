@@ -1,7 +1,6 @@
 package org.example.stream;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class StreamPractice {
@@ -81,7 +80,7 @@ public class StreamPractice {
         System.out.println("max: " + salaryStat.getMax());
         System.out.println("min: " + salaryStat.getMin());
         System.out.println("cnt: " + salaryStat.getCount());
-        System.out.println("Avg: " + salaryStat.getAverage());
+        System.out.println("avg: " + salaryStat.getAverage());
     }
     private static void groupListWithUniqueValueSortedKeys(List<Employee> emps) {
         // grouping

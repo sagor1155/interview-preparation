@@ -13,7 +13,8 @@
 - Oracle Database
 - ELK Stack
 - How to load multiple module/component on bootstrap in angular
-
+- Short circuit operation/evaluation in java stream
+- 12 Factor App
 
 
 ### Java Volatile:

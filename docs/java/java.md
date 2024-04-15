@@ -8,7 +8,7 @@
 - [ ] [Comparator vs Comparable](#comparator-vs-comparable)
 - [ ] Optional
 - [ ] _**Functional Interfaces (Consumer, Supplier, Predicate ...)**_
-- [ ] Stream API
+- [ ] [Stream API]()
 - [ ] Reflection
 - [ ] Unit Testing
 - [ ] Flow, Mono, Future, Reactive, Webflux
@@ -263,4 +263,13 @@ dividing an interger by zero - `ArithmaticException` etc.
 
 ### Refs
 - https://interviewnoodle.com/exception-in-java-89a0b41e0c45
-- 
+
+## Stream API
+
+### Short Circuit Operation
+- Intermediate: `Stream<T> limit(long N)`
+- Terminal: 
+
+<img src="../images/java/stream-short-circuit.png" alt="Stream Short Circuit"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
+
