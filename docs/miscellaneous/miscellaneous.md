@@ -8,14 +8,22 @@
 - Java volatile keyword
 - GraphQL
 - Elasticsearch
+- PostGreSQL
 - MongoDB
-- Cassandra 
+- Cassandra
 - Oracle Database
 - ELK Stack
 - How to load multiple module/component on bootstrap in angular
 - Short circuit operation/evaluation in java stream
 - 12 Factor App
-
+- Jenkins
+- SAGA pattern
+- Hibernate core concepts
+- Hibernate life cycle
+- Middleware in Java
+- J2EE architecture and frameworks
+- Kafka: maintain order for multiple partitions
+- 
 
 ### Java Volatile:
 In Java, the `volatile` keyword is used to indicate that a variable's value may be modified by multiple threads that are executing concurrently. 

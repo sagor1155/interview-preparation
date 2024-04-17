@@ -8,7 +8,7 @@
 - [ ] [Microservice](https://www.udemy.com/course/microservices-with-spring-boot-and-spring-cloud/)
 - [ ] [Database](./docs/database/database.md)
 - [ ] DevOps
-    - [ ] CI/CD Pipeline
+    - [ ] CI/CD Pipeline (Jenkins, Gitlab)
     - [ ] Docker, Docker compose
     - [ ] [Kubernetes](./docs/kubernetes/kubernetes.md)
 - [ ] AWS 
