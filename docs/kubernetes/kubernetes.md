@@ -80,6 +80,14 @@ kubectl get pod
 kubectl get services
 kubectl get replicaset
 ```
+```
+kubectl get pod -o wide
+```
+get deployment file in yaml format and write to a file (includes status) - 
+```
+kubectl get deployment nginx-deployment -o yaml > nginx-depl-status.yaml
+```
+
 
 create deployment - 
 ```
@@ -126,35 +134,84 @@ Delete deployment configuration -
 kubectl delete -f [DEPLOYMENT-CONFIG-YAML-FILE]
 ```
 
+#### Refs:
+- https://www.youtube.com/watch?v=azuwXALfyRg&list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC&index=6
+- https://gitlab.com/nanuchi/youtube-tutorial-series/-/blob/master/basic-kubectl-commands/cli-commands.md
+
+
+## Configuration Files
+Each configurtion file has 3 parts:
+- metadata
+- specification
+- status (automatically generated and added by kubernetes)
+
+Status: 
+- Automatically generated and added by kubernetes
+- If kubernetes finds any difference between desired state and actual state, it's gonna try to fix it
+-  This is the basis of self healing feature of kubernetes
+-  Current status data is stored in `etcd`
+
+
 Sample Deployment Config file: `nginx-deployment.yaml`
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: nginx-depl
+  name: nginx-deployment
   labels:
-    app: nginx-depl
+    app: nginx
 
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: nginx-depl
+      app: nginx
   template:
     metadata:
       labels:
-        app: nginx-depl
+        app: nginx
     spec:
       containers:
       - name: nginx
         image: nginx:1.16
         ports:
-        - containerPort: 80
+        - containerPort: 8080
 ```
 
-#### Refs:
-- https://www.youtube.com/watch?v=azuwXALfyRg&list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC&index=6
-- https://gitlab.com/nanuchi/youtube-tutorial-series/-/blob/master/basic-kubectl-commands/cli-commands.md
-- https://gitlab.com/nanuchi/youtube-tutorial-series/-/blob/master/basic-kubectl-commands/demo-test-deployment.yaml
+Sample Service Config file:
+```yaml
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: nginx-service
+
+spec:
+  selector:
+    app: nginx
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080 
+
+```
+
+Note: 
+- Service `spec->selector->app` should match with deployment `metadata->labels->app` and pod `spec->template->metadata->labels->app`
+- Service `targetPort` should match with Pod `containerPort`
 - 
+
+### Ports in Service and Pod
+![service-port-1.png](../images/k8s/service-port-1.png)
+![service-port-2.png](../images/k8s/service-port-2.png)
+
+
+### Demo
+Apply the deployment and service files mentioned above and describe service. 
+![service-describe.png](../images/k8s/service-describe.png)
+
+
+### Refs:
+- https://www.youtube.com/watch?v=qmDzcu5uY1I&list=PLy7NrYWoggjziYQIDorlXjTvvwweTYoNC&index=7
+- https://gitlab.com/nanuchi/youtube-tutorial-series/-/blob/master/basic-kubectl-commands/demo-test-deployment.yaml
