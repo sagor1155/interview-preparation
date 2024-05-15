@@ -23,15 +23,7 @@
 - Middleware in Java
 - J2EE architecture and frameworks
 - Kafka: maintain order for multiple partitions
-- 
-
-### Java Volatile:
-In Java, the `volatile` keyword is used to indicate that a variable's value may be modified by multiple threads that are executing concurrently. 
-When a variable is declared as `volatile`, it ensures that any thread that reads the variable will see the most recently written value by any other thread. 
-Essentially, it provides visibility guarantees across threads.
-
-Unlike `synchronized` blocks or methods, the volatile keyword does not provide `atomicity` guarantees. 
-It only ensures `visibility`. If multiple threads are writing to a volatile variable, it does not guarantee that the variable will be updated atomically.
-
-Volatile is commonly used for flags or state variables that are accessed by multiple threads, 
-especially in scenarios where one thread modifies the value and other threads need to react to that change.
+- REST API Principles
+- Explain different kind of mocking object (testing)
+- Prometheus, Grafana, and JVisualVM
+- Database scaling, Sharding
