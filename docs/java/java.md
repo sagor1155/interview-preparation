@@ -7,7 +7,7 @@
 - [ ] [Exceptions](#exception)
 - [ ] [Comparator vs Comparable](#comparator-vs-comparable)
 - [ ] Optional
-- [ ] _**Functional Interfaces (Consumer, Supplier, Predicate ...)**_
+- [ ] [Functional Interfaces](#functional-interfaces)
 - [ ] [Stream API]()
 - [ ] Reflection
 - [ ] Unit Testing
@@ -284,3 +284,17 @@ It only ensures `visibility`. If multiple threads are writing to a volatile vari
 
 Volatile is commonly used for flags or state variables that are accessed by multiple threads,
 especially in scenarios where one thread modifies the value and other threads need to react to that change.
+
+## Functional interfaces
+| Interface Name	         | Signature	                 | Description                                                                                                               |
+|-------------------------|----------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| Consumer<T>	            | `void accept(T t)`	        | Represents a function taking one argument (T) and performing an action without returning a value.                         |
+| BiConsumer<T, U>	       | `void accept(T t, U u)`	   | Represents a function taking two arguments (T and U) and performing an action without returning a value.                  |
+| Function<T, R>	         | `R apply(T t)`	              | Represents a function taking one argument (T) and returning a value of type (R).                                          |
+| BiFunction<T, U, R>	    | `R apply(T t, U u)`	         | Represents a function taking two arguments (T and U) and returning a value of type (R).                                   |
+| Predicate<T>	           | `boolean test(T t)`	         | Represents a function taking one argument (T) and returning a boolean based on a condition.                               |
+| BiPredicate<T, U>       | `boolean test(T t, U u)`      | Represents a function that takes two arguments and returns a boolean value based on a condition involving both arguments. |
+| Supplier<T>	            | `T get()`	                   | Represents a function that doesn't take arguments but supplies (returns) a value of type (T).                             |
+| Runnable	               | `void run()`	                | Represents a piece of code to be executed without arguments and doesn't return a value.                                   |
+| Callable<T>	            | `T call() throws Exception`	 | Represents a piece of code to be executed (potentially throwing exceptions) and returning a value of type (T).            | 
+| Comparator<T>	          | `int compare(T o1, T o2)`	 | Comparator                                                                                                                | 
