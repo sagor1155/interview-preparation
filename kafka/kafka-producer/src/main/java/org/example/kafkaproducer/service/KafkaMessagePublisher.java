@@ -16,7 +16,7 @@ public class KafkaMessagePublisher {
     }
 
     public void sendMessage(String message) {
-        CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send("demo2", message);
+        CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send("demo3", message);
         future.whenComplete((result, ex) -> {
             if (ex != null) {
                 System.out.println("Unable to send message=[" + message + "] due to: " + ex.getMessage());

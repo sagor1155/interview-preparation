@@ -20,7 +20,7 @@ public class EventController {
     public ResponseEntity<?> publishMessage(@PathVariable String message) {
         try {
             for (int i=0; i<10000; i++) {
-                publisher.sendMessage(message);
+                publisher.sendMessage(message + i);
             }
             return ResponseEntity.ok("Message published successfully!");
         } catch (Exception ex) {

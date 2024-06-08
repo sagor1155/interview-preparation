@@ -5,6 +5,7 @@
 - Consumer
 - Consumer Groups
 - Partitions
+- Consumer Rebalancing
 - Fault Tolerance
 - Load Distribution
 - Serializer and Deserializer
