@@ -1,4 +1,4 @@
-package org.example.kafkaconsumer.config;
+package org.example.kafkaconsumer.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.Deserializer;
