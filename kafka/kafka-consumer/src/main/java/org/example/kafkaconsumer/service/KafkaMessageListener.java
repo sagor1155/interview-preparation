@@ -4,6 +4,7 @@ import org.example.kafkaconsumer.dto.Customer;
 import org.springframework.kafka.annotation.DltHandler;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.RetryableTopic;
+import org.springframework.kafka.annotation.TopicPartition;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.retry.annotation.Backoff;
@@ -63,6 +64,16 @@ public class KafkaMessageListener {
                           @Header(KafkaHeaders.OFFSET) long offset)
     {
         System.out.println("DLT Received [Topic=" + topic + ", Offset=" + offset + "] " + customer);
+    }
+
+
+    @KafkaListener(topics = "demo6", groupId = "group4",
+    topicPartitions = {@TopicPartition(topic = "demo6", partitions = {"2"})})
+    public void consumeObjectFromPartition(Customer customer,
+                                             @Header(KafkaHeaders.RECEIVED_TOPIC) String topic,
+                                             @Header(KafkaHeaders.OFFSET) long offset)
+    {
+        System.out.println("Consumer-7 Received Object [Topic=" + topic + ", Offset=" + offset + "] " + customer);
     }
 
 }

@@ -30,7 +30,7 @@ public class KafkaMessagePublisher {
 
     public void sendCustomObject(Customer customer) {
         try {
-            CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send("demo5", customer);
+            CompletableFuture<SendResult<String, Object>> future = kafkaTemplate.send("demo6", 2, null, customer);
             future.whenComplete((result, ex) -> {
                 if (ex != null) {
                     System.out.println("Unable to send object=[" + customer + "] due to: " + ex.getMessage());
@@ -43,4 +43,5 @@ public class KafkaMessagePublisher {
             System.out.println("Exception: " + ex.getMessage());
         }
     }
+
 }

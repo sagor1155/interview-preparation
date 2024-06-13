@@ -29,7 +29,9 @@ public class EventController {
     @PostMapping("/publish")
     public ResponseEntity<?> publishEvent(@RequestBody Customer customer) {
         try {
-            publisher.sendCustomObject(customer);
+            for (int i=0; i<100; i++) {
+                publisher.sendCustomObject(customer);
+            }
             return ResponseEntity.ok("Event published successfully!");
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
