@@ -28,6 +28,7 @@
 - Prometheus, Grafana, and JVisualVM
 - Database scaling, Sharding
 
+
 ## Job Description/Recuirements:
 - We are looking for Engineers who can 
 - Write applications in Java using Object Oriented Design Principles
@@ -45,3 +46,16 @@
 - Build Algorithms to Optimize Execution times and reduce end to end latency
 - Use & Tweak Terraform Scripts to deploy Kubernetes Clusters with EKS
 - Navigate & debug Java Apps on a Linux EC2 Instance
+
+
+## Stored Procedures vs Dynamic SQL
+| Feature                | Stored Procedures                                | Dynamic SQL                                      |
+|------------------------|--------------------------------------------------|--------------------------------------------------|
+| **Performance**        | Precompiled and cached, leading to faster execution. | Compiled at runtime, leading to potential overhead. |
+| **Flexibility**        | Less flexible; designed for predefined operations. | Highly flexible; allows query construction at runtime. |
+| **Security**           | Provides better security through encapsulation and parameterization. | More prone to SQL injection if not properly parameterized. |
+| **Access Control**     | Can restrict direct table access and enforce business rules. | Requires careful permission management for direct table access. |
+| **Maintainability**    | Centralizes business logic in the database, making it easier to manage. | Business logic can be scattered across application code, making it harder to maintain. |
+| **Reusability**        | High reusability across different applications. | Limited reusability, tied to specific application logic. |
+| **Complex Search Queries**| Less suited for scenarios requiring highly variable search criteria. | Well-suited for complex search functionality and ad hoc queries. |
+| **Caching**            | Supports query caching for improved performance. | Does not inherently support query caching. |

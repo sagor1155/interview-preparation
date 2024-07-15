@@ -23,31 +23,30 @@ public class StreamPractice {
     }
     private static void findEmployeeWithMaxSalary(List<Employee> emps) {
         Employee emp = emps.stream()
-                .max(
-                        Comparator.comparingInt(Employee::getSalary)
-                                .thenComparing(Employee::getName, Comparator.reverseOrder())
-                )
-                .orElseThrow(() -> new RuntimeException("No employees found!"));
+                        .max(Comparator.comparingInt(Employee::getSalary)
+                                .thenComparing(Employee::getName, Comparator.reverseOrder()))
+                        .orElseThrow(() -> new RuntimeException("No employee Found!"));
 
         System.out.println("Employee with max salary: " + emp);
     }
+
     private static void findRepeatingNames(List<Employee> emps) {
         Map<String, Long> grouped = emps.stream()
-                .collect(Collectors.groupingBy(e -> e.name, Collectors.counting()));
-
-        System.out.println("Grouped By Names: " + grouped);
+                .collect(Collectors.groupingBy(Employee::getName, Collectors.counting()));
 
         List<String> repeatingNames = grouped.entrySet().stream()
-                .filter(entry -> entry.getValue() > 1)
-                .map(entry -> entry.getKey())
+                .filter(e -> e.getValue() > 1)
+                .map(Map.Entry::getKey)
                 .toList();
 
+        System.out.println("Grouped By Names: " + grouped);
         System.out.println("Repeating names: " + repeatingNames);
     }
+
     private static void findDuplicateNames(List<Employee> emps) {
-        List<String> names = emps.stream().map(e -> e.name).toList();
         Set<String> uniqueNames = new HashSet<>();
-        Set<String> duplicateNames = names.stream()
+        Set<String> duplicateNames = emps.stream()
+                .map(e -> e.name)
                 .filter(n -> !uniqueNames.add(n))
                 .collect(Collectors.toSet());
 

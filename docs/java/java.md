@@ -11,7 +11,7 @@
 - [ ] [Stream API]()
 - [ ] Reflection
 - [ ] Unit Testing
-- [ ] Flow, Mono, Future, Reactive, Webflux
+- [ ] Flow, Mono, Future, CompletableFuture, RxJava, Spring Webflux
 - [ ] Java Feature Changes
 
 
