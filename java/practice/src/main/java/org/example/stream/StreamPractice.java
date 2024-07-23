@@ -13,13 +13,13 @@ public class StreamPractice {
         emps.add(new Employee("B", 29, 105));
         emps.add(new Employee("A", 28, 85));
 
-//        groupListWithUniqueValueSortedKeys(emps);
+        groupListWithUniqueValueSortedKeys(emps);
 //        getStatistics(emps);
 //        sliceArray(emps);
 //        mapAndJoinString(emps);
 //        findDuplicateNames(emps);
 //        findRepeatingNames(emps);
-        findEmployeeWithMaxSalary(emps);
+//        findEmployeeWithMaxSalary(emps);
     }
     private static void findEmployeeWithMaxSalary(List<Employee> emps) {
         Employee emp = emps.stream()

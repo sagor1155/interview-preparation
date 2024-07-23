@@ -6,12 +6,13 @@
 - [ ] [Threading](#threading-)
 - [ ] [Exceptions](#exception)
 - [ ] [Comparator vs Comparable](#comparator-vs-comparable)
-- [ ] Optional
 - [ ] [Functional Interfaces](#functional-interfaces)
 - [ ] [Stream API]()
+- [ ] [Asynchronous Programming](#asynchronous-programming-future-completablefuture)
+- [ ] Optional
 - [ ] Reflection
 - [ ] Unit Testing
-- [ ] Flow, Mono, Future, CompletableFuture, RxJava, Spring Webflux
+- [ ] Reactive programming: Flux, Mono, Future, CompletableFuture, RxJava, Spring Webflux
 - [ ] Java Feature Changes
 
 
@@ -298,3 +299,95 @@ especially in scenarios where one thread modifies the value and other threads ne
 | Runnable	               | `void run()`	                | Represents a piece of code to be executed without arguments and doesn't return a value.                                   |
 | Callable<T>	            | `T call() throws Exception`	 | Represents a piece of code to be executed (potentially throwing exceptions) and returning a value of type (T).            | 
 | Comparator<T>	          | `int compare(T o1, T o2)`	 | Comparator                                                                                                                | 
+
+
+## Stream API
+
+## Asynchronous Programming (Future, CompletableFuture)
+- Using asynchronous programming you can write non-blocking code where concurrently you can run N number of tasks 
+in separate thread without blocking main thread. 
+- When the task is complete, it notifies the main thread
+- `Future`, `CompletableFuture`, `ExecutorService`, `Callback Interfaces`, `Thread Pools` etc. can be used to implement asynchronous programming
+
+### Drawbacks of Future
+- It can't be completed manually
+- Multiple Future can't be chained together
+- Multiple Future can't be combined
+- No proper exception handling mechanism
+
+To resolve these issues `CompletableFuture` has been introduced. 
+
+### CompletableFuture
+
+#### runAsync
+Runs background task asynchronously and doesn't return anything from that task. Takes `Runnable` Object and returns `CompletableFuture<Void>`
+```java
+CompletableFuture<Void> runAsync(Runnable runnable);
+CompletableFuture<Void> runAsync(Runnable runnable, Executor executor);
+```
+
+#### supplyAsync
+Runs background task asynchronously and returns data from that task. Takes `Supplier<T>` Object and returns `CompletableFuture<T>`
+```java
+CompletableFuture<T> supplyAsync(Supplier<T> supplier);
+CompletableFuture<T> supplyAsync(Supplier<T> supplier, Executor executor);
+```
+
+If we don't provide `Executor` then, it will get the thread from `ForkJoin` global pool. 
+
+#### thenApply & thenApplyAsync
+Transforms the result of the `CompletableFuture` **(synchronously/asynchronously)** using the provided function 
+and returns a new `CompletableFuture` with the transformed result.
+
+Signature:
+```java
+CompletableFuture<T> thenApply(Function fn);
+CompletableFuture<T> thenApplyAsync(Function fn);
+CompletableFuture<T> thenApplyAsync(Function fn, Executor executor);
+```
+
+Usage:
+```java
+CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 5);
+CompletableFuture<Integer> resultFuture = future.thenApply(n -> n * 2);
+resultFuture.thenAccept(System.out::println); // Output: 10
+```
+
+#### thenAccept & thenAcceptAsync
+Consumes the result of the `CompletableFuture` **(synchronously/asynchronously)** using the provided consumer, 
+performing an action with the result but not returning a new result.
+
+Signature:
+```java
+CompletableFuture<Void> thenAccept(Consumer action);
+CompletableFuture<Void> thenAcceptAsync(Consumer action);
+CompletableFuture<Void> thenAcceptAsync(Consumer action, Executor executor);
+```
+
+Usage:
+```java
+CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 5);
+future.thenAccept(n -> System.out.println("Result: " + n)); // Output: Result: 5
+
+```
+
+#### thenRun & thenRunAsync
+Runs a specified Runnable action **(synchronously/asynchronously)** when the CompletableFuture completes, 
+without using its result.
+
+Signature:
+```java
+CompletableFuture<Void> thenRun(Runnable action);
+CompletableFuture<Void> thenRunAsync(Runnable action);
+CompletableFuture<Void> thenRunAsync(Runnable action, Executor executor);
+```
+
+Usage:
+```java
+CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 5);
+future.thenRun(() -> System.out.println("Task completed.")); // Output: Task completed.
+```
+
+### Ref:
+- https://www.youtube.com/watch?v=GJ5Tx43q6KM
+- 
