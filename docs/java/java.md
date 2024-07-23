@@ -318,6 +318,21 @@ in separate thread without blocking main thread.
 To resolve these issues `CompletableFuture` has been introduced. 
 
 ### CompletableFuture
+CompletableFuture is a class in Java's `java.util.concurrent` package that represents a future result of an asynchronous computation. 
+It is an implementation of the `Future` interface with additional capabilities to handle and compose asynchronous tasks.
+
+- **Asynchronous Computations:** `CompletableFuture` allows you to run tasks asynchronously without blocking the main thread.
+
+- **Creation:** Can be created using `CompletableFuture.runAsync(Runnable)` and `CompletableFuture.supplyAsync(Supplier)` method
+
+- **Non-blocking:** Unlike `Future`, which requires explicit blocking to retrieve the result, 
+`CompletableFuture` provides methods that allow you to specify actions to be taken upon completion of the computation, thus avoiding blocking.
+
+- **Composability:** It provides a rich set of methods to compose multiple futures, such as `thenApply`, `thenCombine`, `thenCompose`, etc., enabling the creation of complex asynchronous pipelines.
+
+- **Completion:** You can manually complete a `CompletableFuture` using methods like `complete`, `completeExceptionally` or `obtrudeValue`.
+
+- **Exception Handling:** It offers methods to handle exceptions that may occur during the asynchronous computation, such as `exceptionally`, `handle`, and `whenComplete`.
 
 #### runAsync
 Runs background task asynchronously and doesn't return anything from that task. Takes `Runnable` Object and returns `CompletableFuture<Void>`
