@@ -3,12 +3,50 @@ package org.example.asynchronous;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.*;
-import java.util.function.Supplier;
 
 public class AsyncDemo {
     public static void main(String[] args) {
 //        runAsyncWithExecutorService();
-        runAsyncWithCompletableFuture();
+//        runAsyncWithCompletableFuture();
+//        pipeCompletableFuture();
+        pipeAsyncCompletableFuture();
+
+        try {
+            Thread.sleep(1000);
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    private static void pipeAsyncCompletableFuture() {
+        Executor executor = Executors.newFixedThreadPool(4);
+        CompletableFuture<Void> future =
+                CompletableFuture.supplyAsync(() -> {
+                            System.out.println("supplyAsync: " + Thread.currentThread().getName());
+                            return Arrays.asList(1, 2, 3, 4, 5, 6);
+                        }, executor)
+                        .thenApplyAsync(d -> {
+                            System.out.println("thenApply: " + Thread.currentThread().getName());
+                            return d.stream().map(elem -> elem*2).toList();
+                        }, executor)
+                        .thenAcceptAsync(d -> {
+                            System.out.println("thenAccept: " + Thread.currentThread().getName());
+                            System.out.println(d);
+                        }, executor)
+                        .thenRunAsync(() -> {
+                            System.out.println("thenRun: " + Thread.currentThread().getName());
+                            System.out.println("Completed");
+                        }, executor);
+
+    }
+
+    private static void pipeCompletableFuture() {
+        CompletableFuture<Void> future =
+                CompletableFuture.supplyAsync(() -> Arrays.asList(1, 2, 3, 4, 5, 6))
+                        .thenApply(d -> d.stream().map(elem -> elem*2).toList())
+                        .thenAccept(System.out::println)
+                        .thenRun(() -> System.out.println("Completed"));
+
     }
 
     private static void runAsyncWithCompletableFuture() {

@@ -9,11 +9,11 @@
 - [ ] [Functional Interfaces](#functional-interfaces)
 - [ ] [Stream API]()
 - [ ] [Asynchronous Programming](#asynchronous-programming-future-completablefuture)
+- [ ] [Reactive Programming](#reactive-programming)
 - [ ] Optional
 - [ ] Reflection
 - [ ] Unit Testing
-- [ ] Reactive programming: Flux, Mono, Future, CompletableFuture, RxJava, Spring Webflux
-- [ ] Java Feature Changes
+- [ ] Java Feature Changes (8/14/17)
 
 
 ## JVM Internals
@@ -403,6 +403,77 @@ CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> 5);
 future.thenRun(() -> System.out.println("Task completed.")); // Output: Task completed.
 ```
 
-### Ref:
+### Refs:
 - https://www.youtube.com/watch?v=GJ5Tx43q6KM
-- 
+- https://www.youtube.com/watch?v=oFRtBuRviHM
+
+
+### Spring Boot | Asynchronous | @Async Annotation
+- https://www.youtube.com/watch?v=R_gejlOXR7g
+- https://www.youtube.com/watch?v=3rJBLFA95Io
+
+
+## Reactive Programming
+- Asynchronous & Non-blocking
+- Functional style code
+- Data flow as event driven stream (pub-sub)
+- Backpressure on data streams
+
+### Thread Processing:
+
+<img src="../images/java/java-reactive-1.png" alt="Traditional Thread Processing"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
+
+<img src="../images/java/java-reactive-2.png" alt="Reactive Thread Processing"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
+
+
+### Reactive Stream Specification
+- Publisher
+- Subscriber
+- Subscription
+- Processor
+
+##### Publisher<T> Interface
+A Publisher is a provider of a potentially unbounded number of sequenced elements, 
+publishing them according to the demand received from its `Subscriber(s)`.
+
+```java
+void subscribe(Subscriber<? super T> s);
+```
+
+##### Subscriber<T> Interface
+A `Subscriber` receives and processes elements from a `Publisher`.
+```java
+void onSubscribe(Subscription s);
+void onNext(T t);
+void onError(Throwable t);
+void onComplete();
+```
+
+##### Subscription Interface
+A `Subscription` represents a one-to-one lifecycle of a `Subscriber` subscribing to a `Publisher`. 
+It can be used to control the flow of data, allowing the `Subscriber` to request elements and to cancel the subscription.
+```java
+void request(long n);
+void cancel();
+```
+
+##### Processor<T, R> Interface
+A Processor is a component that acts as both a `Subscriber` and a `Publisher`. It represents a processing stage that transforms data elements passing through it.
+This interface extends both `Subscriber<T>` and `Publisher<R>`.
+
+
+### Reactive Stream Workflow
+<img src="../images/java/java-reactive-3.png" alt="Reactive Stream Workflow"
+style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
+
+
+
+### Data Types - Flux, Mono
+### Project Reactor
+### RxJava
+### Spring Webflux
+
+### Refs
+- https://www.youtube.com/playlist?list=PLVz2XdJiJQxyB4Sy29sAnU3Eqz0pvGCkD
