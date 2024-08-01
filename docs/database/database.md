@@ -342,7 +342,9 @@ and modifying data concurrently.
 - **Commit and Release Lock:** The transaction commits the changes and releases the lock.
 
 
-
 ## Stored procedures and functions
 - Stored procedures and functions are reusable SQL code blocks that can be executed with or without parameters. 
 - Procedures do not return a value, while functions return a value.
+
+
+
