@@ -44,6 +44,7 @@
 - Implemented both synchronous and asynchronous communication between services using `Feign client` and `Kafka`
 - Mostly used functional style programming using Streams API
 - For testing, I have used `JUnit` and `Mockito` framework
+- Maintained a `internal repository` which is a `private maven repository` (`Nexus` Repository) to host/manage shared libraries and also maintained versioning so that changing shared library code doesn't break other microservices.
 - For deployment, I have used `Docker` to containerize each service and created `deplyment` and `service` configuration file for `Kubernetes`
 - I also have experience in frontend development using `Angular` framework, specially building components, optimizing performance. 
 - I mostly used `reactive approach` for all `asynchronous tasks` while developing `Angular` application using `RxJs`
@@ -53,4 +54,101 @@
 - I have developed a couple of `AWS lambdas` for an `Amazon Connect` based contact center
 - Along with lambdas, I have integrated `API Gateway`, `DynamoDB`, `SNS`, `SQS` and `S3`
 - For building, development testing and deploying AWS resources I have used `serverless framework`. I used to configure resources into a `serverless.yml` file. 
-- Collaborated with DevOps team to create the `deployment pipelines` in `AWS environment`
+- Collaborated with DevOps team for creating the `deployment pipelines` for `AWS Lambdas` specially for setting the necessary environment variables. 
+
+
+## STAR#1: Can you tell me about the most challenging project you have worked on?
+Situation:
+- In my last job, I worked on a client project which is a tax research platform. 
+- The backend service for that application is a monolith in nature/architecture. 
+- It was growing day by day, tightly coupled and takes more development time to add new feature and test. 
+- Sometimes it involves testing the whole application even if we are changing only one module.
+
+Action:
+- I worked with the clients directly to research on how to split the monolith into multiple microservices. 
+- Segregating the modules and converting it to a separate microservice was challenging because of the tight coupling. 
+- Used spring cloud libraries to build the microservices. 
+- Used Kafka and feign client for asynchronous and synchronous service-service communication.
+- Used to maintain a `internal repository` which is a `private maven repository` (`Nexus` Repository) to host/manage shared libraries and also maintained versioning so that changing shared library code doesn't break other microservices 
+
+Result:
+- Because of the microservice architecture, the development and testing time was reduced, 
+- It became more loosely coupled and developer can focus on only one service at a time.
+
+
+## STAR#2: Tell me about a time you got stuck on a project and had to learn a new technology to complete it.
+Situation:
+- Working on microservice architecture was challenging for me.
+- I had no prior experience on microservice architecture.
+
+Action:
+- Learned microservice architecture, spring cloud technologies, docker, Kafka, kubernetes over time
+- I did/enrolled to an online course on Udemy to learn those technologies.
+- Studied on my personal time also.
+
+Result:
+- Quickly learned and adapted with the necessary technologies.
+- Took approximately one month to learn.
+- My team lead and client were happy with my progress.
+
+
+**Another situation:**
+ - Learning `Golang` for developing AWS Lambda while working with US Client
+
+
+## STAR#3: Tell me about a time you saw a problem and took the initiative to fix it.
+Situation:
+- Frontend/Angular application was taking longer to load initially.
+- Because all the modules were eagerly loaded which is unnecessary.  
+
+Action:
+- Reported to the client and created Jira task ticket for improvement.
+- Changed module loading strategy to Lazy loading.
+- Updated change detection strategy to on-push detection in many of the components.
+- Maintained the component states to be immutable
+
+Result:
+- Reduced initial loading time.
+- Initial loading time became 20% faster than before
+- Change detection cycle takes less time to traverse whole component tree.
+
+
+## STAR#4: Can you tell me what is your biggest professional accomplishment?
+Situation:
+- In my first job, I have worked on a Token Generation software.
+
+Action:
+- Developed token generation software using java for generating encrypted token
+- These tokens were used for updating meter configuration and credit/billing parameters
+- Developed this software following the client (BPDB)  provided interface and requirements
+- This tool is the main integration point between client POS (point of sale) application and our energy meter.
+- I have successfully developed and integrated this tool with client POS application
+
+Result:
+- This tool made the payment procedure easier, specially adding credits to smart energy meter.
+- I got a bonus after the successful development and integration
+
+## STAR#5: Tell me about a time where you helped your team.
+Situation:
+- Understanding the whole project was difficult as there was no proper documentation.
+- Specially difficult for the new members to understand the projects parts, scopes and how they are connected.
+
+Action:
+- Created short documents for existing services (available) and their responsibilities.
+- Created diagrams for all connected parts. in `Confluence`
+- Created documentation for necessary tools installation.
+
+Result:
+- Helped new team member to understand other parts/services related to the project.
+- Made the onboarding process easier for new member.
+
+
+## STAR#6: Tell me about a time when you made a mistake and how you solved it.
+Situation:
+- 
+
+Action:
+- 
+
+Result:
+- 	

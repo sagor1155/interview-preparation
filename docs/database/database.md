@@ -129,6 +129,9 @@ END;
 - **Use case:** enforce data integrity, auditing, logging, data transformation/cleaning/validation, enforcing security etc. 
 
 ## Transactions
+- Transactions are sequences of one or more SQL operations treated as a single unit of work. 
+- They ensure data integrity and consistency by adhering to ACID properties (Atomicity, Consistency, Isolation, Durability).
+
 ### Explain transactions and how to implement it in MySQL?
 Transactions in databases are a fundamental concept that ensures data integrity and consistency 
 by grouping one or more database operations into a single logical unit of work.
@@ -308,3 +311,38 @@ SELECT users.name, likes.like FROM users RIGHT OUTER JOIN likes ON users.id = li
 ```
 
 https://joins.spathon.com/
+
+
+## Optimistic and Pessimistic locking
+- Optimistic and pessimistic locking are two concurrency control strategies used in databases to manage 
+access to data by multiple transactions simultaneously, ensuring data integrity and consistency. 
+- They prevent conflicts and maintain data integrity in environments where multiple users are accessing 
+and modifying data concurrently.
+
+### Optimistic Locking
+- Optimistic locking assumes that conflicts are rare and allows multiple transactions to access the same data simultaneously. 
+- It checks for conflicts only when committing the transaction. 
+- This strategy is based on the belief that multiple transactions can complete without interfering with each other. 
+- If a conflict is detected at commit time, the transaction is rolled back.
+
+#### How It Works:
+- **Read Data:** A transaction reads the data and remembers its version (usually a timestamp or a version number).
+- **Make Changes:** The transaction makes changes to the data.
+- **Check for Conflict:** Before committing the changes, the transaction checks whether the data has been modified by another transaction since it was read.
+- **Commit or Rollback:** If no modification is detected, the transaction commits its changes. If a modification is detected, the transaction is rolled back and typically retried.
+
+### Pessimistic Locking
+- Pessimistic locking assumes that conflicts are likely and prevents other transactions from accessing the data once it is locked. 
+- This strategy locks the data as soon as a transaction reads it, ensuring that no other transactions can modify the data until the lock is released. 
+- Pessimistic locking can prevent conflicts but may reduce concurrency and lead to deadlocks if not managed properly.
+
+#### How It Works:
+- **Acquire Lock:** A transaction acquires a lock on the data before reading or modifying it.
+- **Read and Make Changes:** The transaction reads the data and makes changes.
+- **Commit and Release Lock:** The transaction commits the changes and releases the lock.
+
+
+
+## Stored procedures and functions
+- Stored procedures and functions are reusable SQL code blocks that can be executed with or without parameters. 
+- Procedures do not return a value, while functions return a value.
