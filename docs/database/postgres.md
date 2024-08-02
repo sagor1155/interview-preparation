@@ -1,5 +1,13 @@
 # PostgreSQL
 
+- Object Relational Database Management System (ORDBMS)
+- Multi-Version Concurrency Control (MVCC)
+- Rich set of advanced data types
+- Custom Object Creation
+- JSON Query Support
+- Write heavy operation and complex queries
+- High SQL Standard Compliance
+
 
 ## Server Architecture
 

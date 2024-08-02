@@ -54,9 +54,10 @@
 - I have developed a couple of `AWS lambdas` for an `Amazon Connect` based contact center
 - Along with lambdas, I have integrated `API Gateway`, `DynamoDB`, `SNS`, `SQS` and `S3`
 - For building, development testing and deploying AWS resources I have used `serverless framework`. I used to configure resources into a `serverless.yml` file. 
-- Collaborated with DevOps team for creating the `deployment pipelines` for `AWS Lambdas` specially for setting the necessary environment variables. 
+- Collaborated with DevOps team for creating the `deployment pipelines` for `AWS Lambdas` using AWS Code Pipeline
 
-## STAR#: Tell me about a situation when you came up with an idea that impressed clients
+
+## Tell me about a situation when you came up with an idea that impressed clients
 **Situation:** 
 - During the migration of a monolithic tax research platform to a microservice architecture at Kaz Software,  
 A significant challenge we faced during this migration was handling `shared libraries`, 
@@ -75,11 +76,40 @@ This ensured that any changes made to the shared libraries were promptly propaga
 - It eliminated redundancy, ensured consistency across microservices, and simplified maintenance. 
 - The client was impressed with the efficiency, as it facilitated a smoother migration. 
 
-## STAR#: Tell about your experience related to AWS
+
+## Tell about your experience related to AWS
 - I have developed a couple of `AWS lambdas` for an `Amazon Connect` based contact center
-- Along with lambdas, I have integrated `API Gateway`, `DynamoDB`, `SNS`, `SQS` and `S3`
-- For building, development testing and deploying AWS resources I have used `serverless framework`. I used to configure resources into a `serverless.yml` file.
+- Along with lambdas, I have integrated `API Gateway`, `DynamoDB`, `SNS`, `SQS`, `S3`, `Step Function`, `Lex`, `CloudWatch Logs`
+- Lambda invocation was done in several ways like from `Connect` instance, from `SNS` and from `API Gateway`
+- For local development and testing of AWS Lambdas, I have used `serverless framework`. I used to configure resources into a `serverless.yml` file.
+
 - Collaborated with DevOps team for creating the `deployment pipelines` for `AWS Lambdas` specially for setting the necessary environment variables.
+- AWS Code Pipeline (Code Commit, Code Build, Code Deploy)
+- I have experience of deploying application in ECS Cluster, EC2, Fargate
+
+
+## How would you optimize performance of AWS Lambda
+- Efficient code
+- reduced bundle size
+- provisioned concurrency
+- lambda layers for shared dependency
+- asynchronous data/request handling, non blocking
+
+### Reduce Initialization Latency (Cold Start)
+- Minimize Dependencies: Only include necessary libraries and packages in your deployment package. This reduces the size of the deployment package and speeds up the cold start.
+- Provisioned Concurrency: Use provisioned concurrency to keep your function initialized and ready to handle requests.
+
+### Optimize Code Execution
+- Efficient Code: Write efficient and concise code. Avoid unnecessary computations and optimize algorithms.
+- Asynchronous Processing: Use asynchronous operations to handle I/O-bound tasks like network requests.
+
+### Use AWS Lambda Layers
+- Shared Dependencies: Use Lambda layers to manage common dependencies. This helps in reducing the deployment package size and speeds up the initialization.
+  Enable Function Caching
+- Initialization Caching: Use global variables or static data that persist between invocations within the same execution environment. This reduces initialization time for frequently used data.
+
+### Data Handling and Processing
+- Efficient Data Access: Optimize access to data stores like DynamoDB or S3. Use appropriate read/write capacity units for DynamoDB and efficient S3 operations.
 
 
 ## STAR#1: Can you tell me about the most challenging project you have worked on?
@@ -94,6 +124,8 @@ Action:
 - Segregating the modules and converting it to a separate microservice was challenging because of the tight coupling. 
 - Used spring cloud libraries to build the microservices. 
 - Used Kafka and feign client for asynchronous and synchronous service-service communication.
+- Adopted different transactional pattern - Saga pattern, CQRS Pattern
+- Fault tolerance - Circuit Breaker Pattern, Retry, Bulkhead, Rate Limiting
 - Used to maintain a `internal repository` which is a `private maven repository` (`Nexus` Repository) to host/manage shared libraries and also maintained versioning so that changing shared library code doesn't break other microservices 
 
 Result:
@@ -107,9 +139,10 @@ Situation:
 - I had no prior experience on microservice architecture.
 
 Action:
-- Learned microservice architecture, spring cloud technologies, docker, Kafka, kubernetes over time
+- Learned microservice architecture, spring cloud technologies, kubernetes over time
 - I did/enrolled to an online course on Udemy to learn those technologies.
 - Studied on my personal time also.
+- Created prototype microservice project leveraging spring cloud technologies
 
 Result:
 - Quickly learned and adapted with the necessary technologies.
