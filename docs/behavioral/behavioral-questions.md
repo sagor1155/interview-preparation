@@ -56,6 +56,31 @@
 - For building, development testing and deploying AWS resources I have used `serverless framework`. I used to configure resources into a `serverless.yml` file. 
 - Collaborated with DevOps team for creating the `deployment pipelines` for `AWS Lambdas` specially for setting the necessary environment variables. 
 
+## STAR#: Tell me about a situation when you came up with an idea that impressed clients
+**Situation:** 
+- During the migration of a monolithic tax research platform to a microservice architecture at Kaz Software,  
+A significant challenge we faced during this migration was handling `shared libraries`, 
+which were deeply embedded (coupled) in the monolithic structure.
+
+**Action:**
+- To address this issue, I proposed creating a `centralized shared library repository`. 
+- By leveraging Maven for dependency management, I developed a solution where all common functionalities, such as utility classes, and error handling mechanisms, 
+were extracted into standalone libraries. 
+- These libraries were then `versioned` and stored in a `Maven repository` (`Nexus Repository`), making them easily accessible to all microservices.
+- Additionally, I introduced a CI/CD pipeline to automate the process of updating and deploying these shared libraries. 
+This ensured that any changes made to the shared libraries were promptly propagated to all dependent microservices, maintaining consistency and reducing integration issues.
+
+**Result:**
+- The implementation of this shared library repository significantly streamlined the development process. 
+- It eliminated redundancy, ensured consistency across microservices, and simplified maintenance. 
+- The client was impressed with the efficiency, as it facilitated a smoother migration. 
+
+## STAR#: Tell about your experience related to AWS
+- I have developed a couple of `AWS lambdas` for an `Amazon Connect` based contact center
+- Along with lambdas, I have integrated `API Gateway`, `DynamoDB`, `SNS`, `SQS` and `S3`
+- For building, development testing and deploying AWS resources I have used `serverless framework`. I used to configure resources into a `serverless.yml` file.
+- Collaborated with DevOps team for creating the `deployment pipelines` for `AWS Lambdas` specially for setting the necessary environment variables.
+
 
 ## STAR#1: Can you tell me about the most challenging project you have worked on?
 Situation:
@@ -128,17 +153,19 @@ Result:
 - This tool made the payment procedure easier, specially adding credits to smart energy meter.
 - I got a bonus after the successful development and integration
 
-## STAR#5: Tell me about a time where you helped your team.
+## STAR#5: Tell me about a time when you helped your team.
 Situation:
 - Understanding the whole project was difficult as there was no proper documentation.
-- Specially difficult for the new members to understand the projects parts, scopes and how they are connected.
+- Specially difficult for the new members to understand  different parts of the projects, scopes and how they are connected.
 
 Action:
 - Created short documents for existing services (available) and their responsibilities.
 - Created diagrams for all connected parts. in `Confluence`
+- Created API documentation
 - Created documentation for necessary tools installation.
 
 Result:
+- All these things helped the team to understand different parts of the project
 - Helped new team member to understand other parts/services related to the project.
 - Made the onboarding process easier for new member.
 
