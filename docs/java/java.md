@@ -6,6 +6,7 @@
 - [ ] [Threading](#threading-)
 - [ ] [Exceptions](#exception)
 - [ ] [Comparator vs Comparable](#comparator-vs-comparable)
+- [ ] [String Builder vs String Buffer]()
 - [ ] [Functional Interfaces](#functional-interfaces)
 - [ ] [Stream API]()
 - [ ] [Asynchronous Programming](#asynchronous-programming-future-completablefuture)
@@ -200,6 +201,21 @@ The decision to use Comparable or Comparator depends on the requirements and des
 ### Refs
 - https://medium.com/@himani.prasad016/comparable-vs-comparator-7aefb0a697c7
 - https://www.youtube.com/watch?v=ZA2oNhtNk3w
+
+
+## String Builder vs String Buffer
+
+| Feature                 | StringBuilder                                          | StringBuffer                                           |
+|-------------------------|--------------------------------------------------------|--------------------------------------------------------|
+| **Introduced In**       | JDK 1.5                                                | JDK 1.0                                                |
+| **Mutability**          | Mutable                                                | Mutable                                                |
+| **Thread Safety**       | Not thread-safe (unsynchronized)                       | Thread-safe (synchronized)                             |
+| **Performance**         | Faster (no synchronization overhead)                   | Slower (due to synchronization overhead)               |
+| **Use Case**            | Single-threaded environments                           | Multi-threaded environments                            |
+| **Synchronized Methods**| No                                                     | Yes                                                    |
+| **Inheritance**         | Extends `AbstractStringBuilder`                        | Extends `AbstractStringBuilder`                        |
+| **Common Methods**      | `append()`, `insert()`, `delete()`, `reverse()`, etc.  | `append()`, `insert()`, `delete()`, `reverse()`, etc.  |
+| **Default Capacity**    | 16 characters                                          | 16 characters                                          |
 
 
 ## Exceptions

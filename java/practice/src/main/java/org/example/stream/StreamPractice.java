@@ -20,6 +20,7 @@ public class StreamPractice {
 //        findDuplicateNames(emps);
 //        findRepeatingNames(emps);
 //        findEmployeeWithMaxSalary(emps);
+
     }
     private static void findEmployeeWithMaxSalary(List<Employee> emps) {
         Employee emp = emps.stream()
@@ -53,17 +54,19 @@ public class StreamPractice {
         System.out.println("Duplicate Names: " + duplicateNames);
         System.out.println("Unique Names: " + uniqueNames);
     }
+
     private static void mapAndJoinString(List<Employee> emps) {
         String names = emps.stream()
                 .map(e -> e.name.toUpperCase())
                 .collect(Collectors.joining(", "));
         System.out.println("Joined Names: " + names);
     }
+
     private static void sliceArray(List<Employee> emps) {
         // find second and third youngest employee
         List<Integer> ages = emps.stream()
                 .map(e -> e.age)
-                .sorted()
+                .sorted(Comparator.naturalOrder())
                 .distinct()
                 .skip(1)
                 .limit(2)
@@ -71,6 +74,7 @@ public class StreamPractice {
 
         System.out.println("Second and Third youngest employee: " + ages);
     }
+
     private static void getStatistics(List<Employee> emps) {
         IntSummaryStatistics salaryStat = emps.stream()
                 .mapToInt(e -> e.salary)
@@ -81,6 +85,7 @@ public class StreamPractice {
         System.out.println("cnt: " + salaryStat.getCount());
         System.out.println("avg: " + salaryStat.getAverage());
     }
+
     private static void groupListWithUniqueValueSortedKeys(List<Employee> emps) {
         // grouping
         Map<Integer, List<Employee>> groupedMap = emps.stream()
@@ -98,6 +103,7 @@ public class StreamPractice {
         System.out.println(groupedUnique);
         System.out.println(groupedUniqueSorted);
     }
+
     private static class Employee {
         public String name;
         public int age;

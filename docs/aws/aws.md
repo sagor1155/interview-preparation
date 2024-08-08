@@ -60,7 +60,6 @@ Example:
 ```
 
 ## Lambda
-Questions:
 1. Explain the concept of cold and warm starts in AWS Lambda
 2. What's the difference between synchronous and asynchronous invocation in AWS Lambda?
 3. How do you implement error handling and retry logic in Lambda?
@@ -71,7 +70,7 @@ Questions:
 8. How do you pass environment variables (sensitive/non-sensitive data) to AWS Lambda?
 9. How do you re-use code across AWS Lambda functions?
 10. What happens to your lambda functions if you delete a Lambda Layer?
-11. 
+11. Lambda Optimization
 
 Refs:
 - https://www.freecodecamp.org/news/aws-lambda-interview-questions/
@@ -86,3 +85,7 @@ Refs:
 
 ### Refs:
 - https://www.youtube.com/playlist?list=PLmexTtcbIn_gP8bpsUsHfv-58KsKPsGEo
+
+
+## DynamoDB
+- partition key, primary key
