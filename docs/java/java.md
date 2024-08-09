@@ -479,12 +479,11 @@ void cancel();
 A Processor is a component that acts as both a `Subscriber` and a `Publisher`. It represents a processing stage that transforms data elements passing through it.
 This interface extends both `Subscriber<T>` and `Publisher<R>`.
 
-
 ### Reactive Stream Workflow
 <img src="../images/java/java-reactive-3.png" alt="Reactive Stream Workflow"
 style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
 
-
+### Project Reactor
 
 ### Mono
 A Mono represents a single value or no value (0..1). It is similar to `Optional` in Java but is asynchronous and non-blocking.
@@ -567,9 +566,145 @@ public class FluxExample {
 }
 ```
 
-### Project Reactor
-
 ### Spring Webflux
+
+#### Web Server
+Controller
+
+```java
+@GetMapping(value = "/stream", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+public Flux<Customer> getAllCustomersStream() {
+    return service.loadAllCustomersStream();
+}
+```
+
+Service
+
+```java
+    public Flux<Customer> loadAllCustomersStream() {
+        long start = System.currentTimeMillis();
+        Flux<Customer> customers = dao.getCustomersStream();
+        long end = System.currentTimeMillis();
+        System.out.println("Total execution time : " + (end - start));
+        return customers;
+    }
+```
+
+DAO
+
+```java
+    public Flux<Customer> getCustomersStream()  {
+        return Flux.range(1,10)
+                .delayElements(Duration.ofSeconds(1))
+                .doOnNext(i -> System.out.println("processing count in stream flow : " + i))
+                .map(i -> new Customer(i, "customer" + i));
+    }
+```
+
+pom.xml
+
+```xml
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+```
+
+#### Web Client
+GET Request Example:
+
+```java
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+public class WebClientExample {
+
+    private final WebClient webClient;
+
+    public WebClientExample() {
+        this.webClient = WebClient.builder()
+                                  .baseUrl("https://jsonplaceholder.typicode.com")
+                                  .build();
+    }
+
+    public Mono<String> getPostById(int postId) {
+        return webClient.get()
+                        .uri("/posts/{id}", postId)
+                        .retrieve()
+                        .bodyToMono(String.class)
+                        .onErrorResume(e -> {
+                            System.out.println("Error occurred: " + e.getMessage());
+                            return Mono.empty();
+                        });
+    }
+
+    public static void main(String[] args) {
+        WebClientExample example = new WebClientExample();
+        example.getPostById(1)
+               .subscribe(response -> System.out.println("Response: " + response));
+    }
+}
+```
+
+POST Request Example:
+
+```java
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+public class WebClientPostExample {
+
+    private final WebClient webClient;
+
+    public WebClientPostExample() {
+        this.webClient = WebClient.builder()
+                                  .baseUrl("https://jsonplaceholder.typicode.com")
+                                  .build();
+    }
+
+    public Mono<String> createPost(String title, String body, int userId) {
+        return webClient.post()
+                        .uri("/posts")
+                        .body(BodyInserters.fromValue(new PostRequest(title, body, userId)))
+                        .retrieve()
+                        .bodyToMono(String.class)
+                        .onErrorResume(e -> {
+                            System.out.println("Error occurred: " + e.getMessage());
+                            return Mono.empty();
+                        });
+    }
+
+    public static void main(String[] args) {
+        WebClientPostExample example = new WebClientPostExample();
+        example.createPost("My Title", "My Post Body", 1)
+               .subscribe(response -> System.out.println("Response: " + response));
+    }
+
+    // Simple class to represent the POST request body
+    static class PostRequest {
+        private String title;
+        private String body;
+        private int userId;
+
+        public PostRequest(String title, String body, int userId) {
+            this.title = title;
+            this.body = body;
+            this.userId = userId;
+        }
+
+        // Getters and setters (optional)
+    }
+}
+```
 
 ### Refs
 - https://www.youtube.com/playlist?list=PLVz2XdJiJQxyB4Sy29sAnU3Eqz0pvGCkD
