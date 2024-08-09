@@ -11,6 +11,7 @@
 - [ ] [Stream API]()
 - [ ] [Asynchronous Programming](#asynchronous-programming-future-completablefuture)
 - [ ] [Reactive Programming](#reactive-programming)
+- [ ] [Transactions](#transactions)
 - [ ] Optional
 - [ ] Reflection
 - [ ] Unit Testing
@@ -708,3 +709,85 @@ public class WebClientPostExample {
 
 ### Refs
 - https://www.youtube.com/playlist?list=PLVz2XdJiJQxyB4Sy29sAnU3Eqz0pvGCkD
+
+
+## Transactions
+- ACID
+  - Atomicity, Consistency, Isolation, and Durability
+- Commit/Rollback
+- Propagation
+- Isolation level & Problems
+- Locking mechanism
+  - Optimistic locking
+  - Pessimistic locking
+
+Transactions in databases are a fundamental concept that ensures data integrity and consistency
+by grouping one or more database operations into a single logical unit of work.
+A transaction must satisfy the ACID properties.
+
+
+### ACID
+`Atomicity:` The entire transaction is treated as a single unit. Either all statements succeed or none do.
+
+`Consistency:` The transaction moves the database from one valid state to another, maintaining data integrity.
+
+`Isolation:` Transactions should execute independently of other transactions. Transactions are isolated from each other,
+ensuring changes made by one transaction don't affect unfinished transactions.
+
+`Durability:` Once a transaction is committed, the changes are permanent and survive system failures.
+
+### Commit/Rollback
+**Commit:** Permanently saves all changes made during the transaction to the database when all operations are successfully completed.
+
+**Rollback:** Undoes all changes made during the transaction, returning the database to its prior state when an error occurs or when a transaction needs to be aborted.
+
+### Propagation
+
+| Propagation Type          | Description |
+|---------------------------|-------------|
+| **REQUIRED**               | Supports a current transaction; creates a new one if none exists. This is the default propagation setting. |
+| **REQUIRES_NEW**           | Suspends the current transaction (if it exists) and creates a new one. The new transaction is independent of the suspended one. |
+| **SUPPORTS**               | Supports a current transaction; if none exists, executes non-transactionally. |
+| **NOT_SUPPORTED**          | Executes non-transactionally, suspending the current transaction if one exists. |
+| **MANDATORY**              | Supports a current transaction; throws an exception if no current transaction exists. |
+| **NEVER**                  | Executes non-transactionally; throws an exception if a transaction exists. |
+| **NESTED**                 | If a current transaction exists, it creates a nested transaction; otherwise, behaves like `REQUIRED`. Nested transactions can be rolled back independently of the outer transaction. |
+
+
+### Isolation levels and problems
+
+| Isolation Level    | Dirty Read | Non-Repeatable Read | Phantom Read      |
+|--------------------|------------|---------------------|-------------------|
+| **Read Committed** | Prevented  | Possible            | Possible          |
+| **Repeatable Read**| Prevented  | Prevented           | Possible          |
+| **Serializable**   | Prevented  | Prevented           | Prevented         |
+
+
+### Optimistic and Pessimistic locking
+- Optimistic and pessimistic locking are two concurrency control strategies used in databases to manage
+  access to data by multiple transactions simultaneously, ensuring data integrity and consistency.
+- They prevent conflicts and maintain data integrity in environments where multiple users are accessing
+  and modifying data concurrently.
+
+#### Optimistic Locking
+- Optimistic locking assumes that conflicts are rare and allows multiple transactions to access the same data simultaneously.
+- It checks for conflicts only when committing the transaction.
+- This strategy is based on the belief that multiple transactions can complete without interfering with each other.
+- If a conflict is detected at commit time, the transaction is rolled back.
+
+##### How It Works:
+- **Read Data:** A transaction reads the data and remembers its version (usually a timestamp or a version number).
+- **Make Changes:** The transaction makes changes to the data.
+- **Check for Conflict:** Before committing the changes, the transaction checks whether the data has been modified by another transaction since it was read.
+- **Commit or Rollback:** If no modification is detected, the transaction commits its changes. If a modification is detected, the transaction is rolled back and typically retried.
+
+#### Pessimistic Locking
+- Pessimistic locking assumes that conflicts are likely and prevents other transactions from accessing the data once it is locked.
+- This strategy locks the data as soon as a transaction reads it, ensuring that no other transactions can modify the data until the lock is released.
+- Pessimistic locking can prevent conflicts but may reduce concurrency and lead to deadlocks if not managed properly.
+
+##### How It Works:
+- **Acquire Lock:** A transaction acquires a lock on the data before reading or modifying it.
+- **Read and Make Changes:** The transaction reads the data and makes changes.
+- **Commit and Release Lock:** The transaction commits the changes and releases the lock.
+ 
