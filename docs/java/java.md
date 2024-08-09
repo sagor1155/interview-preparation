@@ -712,6 +712,11 @@ public class WebClientPostExample {
 
 
 ## Transactions
+Transactions in databases are a fundamental concept that ensures data integrity and consistency
+by grouping one or more database operations into a single logical unit of work.
+A transaction must satisfy the ACID properties.
+
+
 - ACID
   - Atomicity, Consistency, Isolation, and Durability
 - Commit/Rollback
@@ -720,11 +725,6 @@ public class WebClientPostExample {
 - Locking mechanism
   - Optimistic locking
   - Pessimistic locking
-
-Transactions in databases are a fundamental concept that ensures data integrity and consistency
-by grouping one or more database operations into a single logical unit of work.
-A transaction must satisfy the ACID properties.
-
 
 ### ACID
 `Atomicity:` The entire transaction is treated as a single unit. Either all statements succeed or none do.
