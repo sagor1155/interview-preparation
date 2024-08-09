@@ -44,6 +44,7 @@
 - Implemented both synchronous and asynchronous communication between services using `Feign client` and `Kafka`
 - Mostly used functional style programming using Streams API
 - For testing, I have used `JUnit` and `Mockito` framework
+- For performance testing, I have used Apache JMeter (Test plan, Thread group, Sampler-Http Request, Listener), Check load time/latency 
 - Maintained a `internal repository` which is a `private maven repository` (`Nexus` Repository) to host/manage shared libraries and also maintained versioning so that changing shared library code doesn't break other microservices.
 - For deployment, I have used `Docker` to containerize each service and created `deplyment` and `service` configuration file for `Kubernetes`
 - I also have experience in frontend development using `Angular` framework, specially building components, optimizing performance. 

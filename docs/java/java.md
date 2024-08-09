@@ -486,9 +486,89 @@ style="float: center; margin-right: 10px; margin-bottom: 20px; width: 640px;" />
 
 
 
-### Data Types - Flux, Mono
+### Mono
+A Mono represents a single value or no value (0..1). It is similar to `Optional` in Java but is asynchronous and non-blocking.
+
+Commonly used functions:
+
+| Function | Description |
+|----------|-------------|
+| `just(T value)` | Creates a `Mono` that emits the provided value. |
+| `empty()` | Creates an empty `Mono` that completes without emitting any value. |
+| `error(Throwable error)` | Creates a `Mono` that terminates with an error. |
+| `map(Function<? super T,? extends R> mapper)` | Transforms the item emitted by this `Mono` using the provided mapping function. |
+| `flatMap(Function<? super T,? extends Mono<? extends R>> mapper)` | Transforms the item emitted by this `Mono` into another `Mono`, then flattens the result. |
+| `doOnSuccess(Consumer<? super T> onSuccess)` | Adds behavior triggered when the `Mono` successfully emits an item. |
+| `onErrorResume(Function<? super Throwable,? extends Mono<? extends T>> fallback)` | Provides a fallback `Mono` if an error occurs. |
+| `delayElement(Duration duration)` | Delays the emission of the item by the specified duration. |
+| `zipWith(Mono<? extends T> other)` | Combines this `Mono` with another `Mono` and emits a tuple of their results. |
+| `then()` | Ignores the value from the `Mono` and returns a new `Mono<Void>` that completes when this `Mono` completes. |
+
+
+Example:
+
+```java
+import reactor.core.publisher.Mono;
+
+public class MonoExample {
+
+    public static void main(String[] args) {
+        Mono<String> mono = Mono.just("Hello, World!")
+                                .map(String::toUpperCase)
+                                .doOnSuccess(value -> System.out.println("Success: " + value))
+                                .onErrorResume(e -> Mono.just("Fallback value"));
+
+        mono.subscribe(System.out::println);
+    }
+}
+```
+
+### Flux
+A Flux represents a sequence of 0 to N items. It is similar to Stream in Java but is asynchronous and non-blocking.
+
+Commonly used functions:
+
+| Function | Description |
+|----------|-------------|
+| `just(T... values)` | Creates a `Flux` that emits the provided values. |
+| `fromIterable(Iterable<? extends T> it)` | Creates a `Flux` from an `Iterable`. |
+| `range(int start, int count)` | Creates a `Flux` that emits a sequence of integers from `start` to `start + count - 1`. |
+| `map(Function<? super T,? extends R> mapper)` | Transforms each item emitted by this `Flux` using the provided mapping function. |
+| `flatMap(Function<? super T,? extends Publisher<? extends R>> mapper)` | Transforms each item into another `Publisher` and flattens the results. |
+| `filter(Predicate<? super T> predicate)` | Emits only those items that match the predicate. |
+| `take(long n)` | Takes only the first `n` items from the `Flux`. |
+| `mergeWith(Publisher<? extends T> other)` | Merges the emissions of this `Flux` with another `Publisher`. |
+| `zipWith(Flux<? extends T> other)` | Combines this `Flux` with another `Flux` and emits tuples of their combined results. |
+| `collectList()` | Collects the items emitted by this `Flux` into a `Mono<List<T>>`. |
+| `buffer(int size)` | Collects the items emitted by this `Flux` into batches of the given size. |
+
+
+Example:
+
+```java
+import reactor.core.publisher.Flux;
+
+import java.time.Duration;
+
+public class FluxExample {
+
+    public static void main(String[] args) {
+        Flux<Integer> flux = Flux.range(1, 5)
+                                 .map(i -> i * 2)
+                                 .filter(i -> i % 4 == 0)
+                                 .delayElements(Duration.ofMillis(500))
+                                 .doOnNext(i -> System.out.println("Processing: " + i))
+                                 .take(3);
+
+        flux.subscribe(System.out::println, 
+                       Throwable::printStackTrace, 
+                       () -> System.out.println("Flux completed"));
+    }
+}
+```
+
 ### Project Reactor
-### RxJava
+
 ### Spring Webflux
 
 ### Refs

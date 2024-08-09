@@ -16,6 +16,7 @@ public class AsyncDemo {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+
     }
 
     private static void pipeAsyncCompletableFuture() {

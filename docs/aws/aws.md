@@ -71,6 +71,11 @@ Example:
 9. How do you re-use code across AWS Lambda functions?
 10. What happens to your lambda functions if you delete a Lambda Layer?
 11. Lambda Optimization
+12. Types of Concurrency in Lambda
+    - Unreserved Concurrency: The total amount of concurrency available to your account.
+    - Reserved Concurrency: A specific amount of concurrency allocated to a particular function. This guarantees the function can always scale up to the reserved limit, but also limits it from consuming more than the reserved capacity.
+    - Provisioned Concurrency: Ensures that your function is always initialized and ready to respond to requests, reducing cold start times.
+13. 
 
 Refs:
 - https://www.freecodecamp.org/news/aws-lambda-interview-questions/

@@ -22,6 +22,7 @@ public class Main {
 //        int windowSize = 3;
 //        double[] result = movingWindow(nums, windowSize);
 //        System.out.println(Arrays.toString(result));
+
     }
 
     public static double[] movingWindow(int[] nums, int windowSize) {
@@ -79,21 +80,25 @@ public class Main {
         }
     }
 
-    public static List<Map.Entry<String, Integer>> getMaxOccurringWords(String input, Integer n) {
+    public static List<Map.Entry<String, Long>> getMaxOccurringWords(String input, Integer n) {
         String[] words = input.split("\\s+");
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, Long> map = new HashMap<>();
 
         for (String word: words) {
-            map.put(word, map.getOrDefault(word, 0)+1);
+            map.put(word, map.getOrDefault(word, 0L)+1L);
         }
 
-        PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>(
+        // alternative
+//        Map<String, Long> map = Arrays.stream(words)
+//                .collect(Collectors.groupingBy(word -> word, Collectors.counting()));
+
+        PriorityQueue<Map.Entry<String, Long>> pq = new PriorityQueue<>(
                 (a, b) -> b.getValue().compareTo(a.getValue())
         );
 
         pq.addAll(map.entrySet());
 
-//        List<Map.Entry<String, Integer>> result = new ArrayList<>();
+//        List<Map.Entry<String, Long>> result = new ArrayList<>();
 //        for (int i=0; i<n && !pq.isEmpty(); i++) {
 //            result.add(pq.poll());
 //        }
