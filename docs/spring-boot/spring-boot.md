@@ -1,6 +1,7 @@
 # Spring Boot
 - [ ] AOP
 - [ ] Hibernate, ORM
+- [ ] Filters, Interceptors
 - [ ] Reactive Programming (Spring WebFlux)
 - [ ] Functional Endpoint
 - [ ] Spring Security
