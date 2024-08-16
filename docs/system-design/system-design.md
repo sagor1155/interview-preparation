@@ -84,7 +84,7 @@
 ### Asynchronous
 - Message Broker
   - RabbitMQ
-  - Kafka
+  - Kafka (Partitioning, Cluster, Message rate, Retry, Dead letter queue)
 
 ## Microservice
 - API gateway (Zuul)
@@ -131,6 +131,28 @@
 - Payment System
 - Messaging App
 - How to handle millions of http request
+
+### Payment System
+- Requirements
+- service-service communication (kafka)
+- payment failure 
+- Retry (Exponential backoff)
+- Timeout
+- Avoid double payment using idempotency 
+  - retry on the backend side
+  - use idempotent key (expires after certain period of time) generated at the client
+  - it is added to http header
+  - so that payment service can identify if it's a retry operation, if payment already succeed then discard and respond gracefully 
+  - if there's multiple concurrent request with same idempotent key then only one request is processed
+- Poison pill error - incompatible message between services, save them in dead letter queue
+- If service-service communication fails as one service is down, message can be stored in normal queue
+- Scale out services and databases
+- load balancing
+- api gateway
+- security
+
+#### Refs:
+  - https://www.youtube.com/watch?v=olfaBgJrUBI
 
 ### How to handle millions of http request
 - Load Balancing
